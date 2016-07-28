@@ -41,7 +41,7 @@ window.onload = function() {
                     alert("Correct.")
                     this.nextQuestion();
                 } else {
-                    alert(scores + " Wrong. The answer was " + this.currentQuestion.answerText)
+                    alert(" Wrong. The answer was " + this.currentQuestion.answerText)
                     this.nextQuestion();
                 }
 
