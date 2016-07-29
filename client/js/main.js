@@ -3,16 +3,16 @@ window.onload = function() {
         el: '#app',
         mixins: [VueFocus.mixin],
         ready: function() {
-
             // GET /someUrl
             this.$http.get('https://ajusa.github.io/crackbowl-scraper/output.json').then(function(response) {
                 this.questions = response.json();
                 this.nextQuestion();
+                this.updateBuffer()
             });
             window.addEventListener('keyup', this.focus)
+
         },
         data: {
-            message: 'Hello Vue.js!',
             questions: [],
             currentQuestion: {},
             input: "",
@@ -25,27 +25,26 @@ window.onload = function() {
         methods: {
             updateBuffer: function() {
                 var self = this;
-                if (this.n < (this.currentQuestion.question.length) && !this.pause) {
-                    this.textBuffer = this.currentQuestion.question.substring(0, this.n + 1);
-                    this.n++;
-                    setTimeout(function() {
-                        self.updateBuffer(self.n)
-                    }, 40);
-                }
+
+                setInterval(function() {
+                    if (self.n < (self.currentQuestion.question.length) && !self.pause) {
+                        self.textBuffer = self.currentQuestion.question.substring(0, self.n + 1);
+                        self.n++;
+                    }
+                }, 50);
+
             },
             buzz: function() {
                 this.pause = true;
-
             },
             unBuzz: function() {
                 this.pause = false;
-                this.updateBuffer();
             },
             nextQuestion: function() {
                 this.focused = false;
                 this.n = 0;
                 this.currentQuestion = this.questions[getRandomInt(0, this.questions.length + 1)];
-                this.updateBuffer(0)
+
             },
             focus: function(e) {
                 if (e.keyCode == 32)
@@ -66,10 +65,10 @@ window.onload = function() {
                     }
                 }
                 if (avg > .75) {
-                    this.consoleBuffer.push("Correct. The answer was " + this.currentQuestion.answerText + this.consoleBuffer);
+                    this.consoleBuffer.push("Correct. The answer was " + this.currentQuestion.answerText);
                     this.nextQuestion();
                 } else {
-                    this.consoleBuffer.push("Wrong. The answer was " + this.currentQuestion.answerText + this.consoleBuffer);
+                    this.consoleBuffer.push("Wrong. The answer was " + this.currentQuestion.answerText);
                     this.nextQuestion();
                 }
 
