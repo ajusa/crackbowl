@@ -8,6 +8,7 @@ window.onload = function() {
                 this.questions = response.json();
                 this.nextQuestion();
                 this.updateBuffer()
+                this.startTimer();
             });
             window.addEventListener('keyup', this.focus)
 
@@ -21,21 +22,41 @@ window.onload = function() {
             n: 0,
             focused: false,
             consoleBuffer: [],
+            canBuzz: true,
+            timerBuffer: -1,
         },
         methods: {
+            startTimer: function() {
+                var self = this;
+                setInterval(function() {
+                    if (self.timerBuffer > 0) {
+                    	self.timerBuffer -= 1;
+                    	self.pause = true;
+                    } else if(self.timerBuffer == 0){
+                    	self.submit()
+                    	self.timerBuffer = 0;
+                    }
+                }, 100)
+            },
             updateBuffer: function() {
                 var self = this;
-
                 setInterval(function() {
                     if (self.n < (self.currentQuestion.question.length) && !self.pause) {
                         self.textBuffer = self.currentQuestion.question.substring(0, self.n + 1);
                         self.n++;
+                    } else if(self.n == self.currentQuestion.question.length){
+                    	self.timerBuffer = 30;
+                    	self.n++
                     }
+
                 }, 50);
 
             },
             buzz: function() {
+            	this.focused = true;
                 this.pause = true;
+                if (this.timerBuffer < 0) {this.timerBuffer = 50;}
+                
             },
             unBuzz: function() {
                 this.pause = false;
@@ -44,6 +65,9 @@ window.onload = function() {
                 this.focused = false;
                 this.n = 0;
                 this.currentQuestion = this.questions[getRandomInt(0, this.questions.length + 1)];
+                this.canBuzz = true;
+                this.pause = false;
+                this.timerBuffer = -1;
 
             },
             focus: function(e) {
@@ -66,14 +90,17 @@ window.onload = function() {
                 }
                 if (avg > .75) {
                     this.consoleBuffer.unshift("Correct. The answer was " + this.currentQuestion.answerText);
-                    this.nextQuestion();
+                    this.pause = true;
+                    this.textBuffer = this.currentQuestion.question;
                 } else {
                     this.consoleBuffer.unshift("Wrong. The answer was " + this.currentQuestion.answerText);
-                    this.nextQuestion();
+                    this.pause = true;
+                    this.textBuffer = this.currentQuestion.question;
                 }
 
             },
             submit: function() {
+                this.canBuzz = false;
                 answer = this.input.trim();
                 this.input = "";
                 for (var i = chars.length - 1; i >= 0; i--) {
@@ -101,6 +128,7 @@ window.onload = function() {
         }
     })
 }
+
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;

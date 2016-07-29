@@ -28,10 +28,11 @@
         </nav>
     </header>
     <main class="o-container o-container--xlarge" id="app" >
-        <div class="mt4 pt4 c-input-group">
-            <input class="c-field" type="text" v-model="input" v-on:keyup.enter="submit" v-on:focus="buzz" v-focus-model="focused" v-on:blur="unBuzz">
-            <button class="c-button c-button--primary" v-on:click="submit">Submit</button>
+        <div class="mt4 pt4 c-input-group mb4">
+            <input class="c-field" type="text" :disabled = "!canBuzz" v-model="input" v-on:keyup.enter="submit" v-on:focus="buzz" v-focus-model="focused" v-on:blur="unBuzz">
+            <button class="c-button c-button--primary" v-on:click="buzz">Buzz</button>
         </div>
+        <button class="c-button c-button--primary" v-on:click="nextQuestion">Next</button> <button class="c-button c-button--primary">WIP</button>
         <div class="row u-letter-box--super" v-on:keyup.space="focus">
 
             <div class="seven columns c-card bg-white ph3 pv2" id="questions">
@@ -42,12 +43,7 @@
                 <div class="c-card pa3 bg-white">
 
                     <b>Timer</b>
-                    <ul class="pv1 c-list">
-                        <li class="c-list__item">Ajusa</li>
-                        <li class="c-list__item">Dark_P1ant</li>
-                        <li class="c-list__item">Hitler</li>
-                        <li class="c-list__item">^Not him</li>
-                    </ul>
+                    <h3 class="c-heading c-heading--xlarge tc">{{timerBuffer/10}}</h3>
 
                 </div>
             </div>
