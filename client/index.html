@@ -33,12 +33,11 @@
         <a class="button" v-on:click="toggleBuffer">{{toggle}}</a>
         <div class="row mt3">
             <div class="eight columns br2 bg-white ph4 pv4">
+            <h3 v-if = "timerBuffer > -1" class="tc mb4">{{timerBuffer/10}}</h3>
                 <h5>{{currentQuestion.heading}}</h5>
                 <p>{{textBuffer}}</p>
             </div>
             <div class="four columns fw3 pa3 ph4 br2 bg-white">
-                <h5>Timer</h5>
-                <h3 class="tc mb4">{{timerBuffer/10}}</h3>
                 <h5>Topics [WIP, broken ATM]</h5>
                 <select class="tc">
                     <option value="All">All</option>
