@@ -3,7 +3,6 @@ window.onload = function() {
         el: '#app',
         mixins: [VueFocus.mixin],
         ready: function() {
-
             // GET /someUrl
             this.$http.get('https://ajusa.github.io/crackbowl-scraper/output.json').then(function(response) {
                 this.questions = response.json();
@@ -14,7 +13,6 @@ window.onload = function() {
 
         },
         data: {
-            message: 'Hello Vue.js!',
             questions: [],
             currentQuestion: {},
             input: "",
@@ -67,10 +65,10 @@ window.onload = function() {
                     }
                 }
                 if (avg > .75) {
-                    this.consoleBuffer.push("Correct. The answer was " + this.currentQuestion.answerText + this.consoleBuffer);
+                    this.consoleBuffer.push("Correct. The answer was " + this.currentQuestion.answerText);
                     this.nextQuestion();
                 } else {
-                    this.consoleBuffer.push("Wrong. The answer was " + this.currentQuestion.answerText + this.consoleBuffer);
+                    this.consoleBuffer.push("Wrong. The answer was " + this.currentQuestion.answerText);
                     this.nextQuestion();
                 }
 
