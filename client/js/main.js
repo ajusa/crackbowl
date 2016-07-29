@@ -1,26 +1,53 @@
 window.onload = function() {
     new Vue({
         el: '#app',
+        mixins: [VueFocus.mixin],
         ready: function() {
 
             // GET /someUrl
-            this.$http.get('https://ajusa.github.io/crackbowl-scraper/output.json').then((response) => {
+            this.$http.get('https://ajusa.github.io/crackbowl-scraper/output.json').then(function(response) {
                 this.questions = response.json();
                 this.nextQuestion();
-            }, (response) => {
-                // error callback
             });
-
+            window.addEventListener('keyup', this.focus)
         },
         data: {
             message: 'Hello Vue.js!',
             questions: [],
             currentQuestion: {},
             input: "",
+            textBuffer: "",
+            pause: false,
+            n: 0,
+            focused: false,
         },
         methods: {
+            updateBuffer: function() {
+                var self = this;
+                if (this.n < (this.currentQuestion.question.length) && !this.pause) {
+                    this.textBuffer = this.currentQuestion.question.substring(0, this.n + 1);
+                    this.n++;
+                    setTimeout(function() {
+                        self.updateBuffer(self.n)
+                    }, 40);
+                }
+            },
+            pauseBuffer: function() {
+                this.pause = true;
+            },
+            startBuffer: function() {
+                this.pause = false;
+                this.updateBuffer();
+            },
             nextQuestion: function() {
+            	this.focused = false;
+            	this.n = 0;
                 this.currentQuestion = this.questions[getRandomInt(0, this.questions.length + 1)];
+                this.updateBuffer(0)
+            },
+            focus: function(e) {
+                if (e.keyCode == 32)
+                    this.focused = true;
             },
             check: function(arr) {
                 var scores = [0]

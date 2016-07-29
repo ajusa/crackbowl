@@ -11,6 +11,7 @@
     <!-- VueFire -->
     <script src="https://cdn.jsdelivr.net/vuefire/1.1.0/vuefire.min.js"></script>
     <script src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
+    <script src="js/vue-focus.min.js"></script>
     <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/blazecss/latest/blaze.min.css">
     <link rel="stylesheet" href="https://npmcdn.com/tachyons@4.0.4/css/tachyons.min.css" />
@@ -26,16 +27,16 @@
             <span class="c-nav__item c-nav__item--right">About</span>
         </nav>
     </header>
-    <main class="o-container o-container--xlarge" id="app">
+    <main class="o-container o-container--xlarge" id="app" >
         <div class="mt4 pt4 c-input-group">
-            <input class="c-field" type="text" v-model="input" v-on:keyup.enter="submit">
+            <input class="c-field" type="text" v-model="input" v-on:keyup.enter="submit" v-on:focus="pauseBuffer" v-focus-model="focused" v-on:blur="startBuffer">
             <button class="c-button c-button--primary" v-on:click="submit">Submit</button>
         </div>
-        <div class="row u-letter-box--super">
+        <div class="row u-letter-box--super" v-on:keyup.space="focus">
 
             <div class="eight columns c-card bg-white ph3 pv2" id="questions">
                 <h5 class="c-heading c-heading--small">2002 ACF Regionals/College/Literature</h5>
-                <p>{{currentQuestion.question}}</p>
+                <p>{{textBuffer}}</p>
             </div>
             <div class="four columns">
                 <div class="c-card pa3 bg-white">
