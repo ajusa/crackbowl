@@ -7,20 +7,23 @@ window.onload = function() {
                 this.questions = response.json();
                 this.updateBuffer()
                 this.startTimer();
+                this.consoleBuffer.unshift("Hit the next button (or n) to start a question, hit buzz (or space) to buzz, and hit pause/play (p) to toggle");
             });
-            window.addEventListener('keyup', this.focus)
+            window.addEventListener('keyup', this.keys)
         },
         data: {
             questions: [],
             currentQuestion: {},
             input: "",
-            textBuffer: "",
+            textBuffer: "Welcome to crackbowl! Please look at the console below to find out how to begin. \n Questions appear here",
             pause: false,
             n: 0,
             focused: false,
             consoleBuffer: [],
-            canBuzz: true,
+            canBuzz: false,
             timerBuffer: -1,
+            toggle: "Pause",
+            timesBuzzed: 0,
         },
         methods: {
             startTimer: function() {
@@ -32,6 +35,7 @@ window.onload = function() {
                     } else if (self.timerBuffer == 0) {
                         self.submit()
                         self.timerBuffer = -1;
+                        self.timesBuzzed++;
                     }
                 }, 100)
             },
@@ -47,30 +51,48 @@ window.onload = function() {
                     }
                 }, 50);
             },
+            toggleBuffer: function() {
+                if (this.toggle == "Pause") {
+                    this.pause = true;
+                    this.toggle = "Play"
+                    this.canBuzz = false;
+                } else {
+                    this.pause = false;
+                    this.toggle = "Pause"
+                    if (this.timesBuzzed < 1) 
+                        this.canBuzz = true;
+                }
+            },
             endQuestion: function() {
-            	this.timerBuffer = -1;
+                this.timerBuffer = -1;
                 this.n = this.currentQuestion.question.length + 1;
                 this.textBuffer = this.currentQuestion.question;
             },
             buzz: function() {
-                this.focused = true;
-                this.pause = true;
-                if (this.timerBuffer < 0) { this.timerBuffer = 50; }
-            },
-            unBuzz: function() {
-                this.pause = false;
+                if (this.timesBuzzed < 1) {
+                    this.canBuzz = true;
+                    this.focused = true;
+                    this.pause = true;
+                    if (this.timerBuffer < 0) { this.timerBuffer = 50; }
+                    this.timesBuzzed++;
+                }
             },
             nextQuestion: function() {
-                this.focused = false;
                 this.n = 0;
                 this.currentQuestion = this.questions[getRandomInt(0, this.questions.length + 1)];
-                this.canBuzz = true;
                 this.pause = false;
                 this.timerBuffer = -1;
+                this.timesBuzzed = 0;
             },
-            focus: function(e) {
-                if (e.keyCode == 32)
+            keys: function(e) {
+                if (e.keyCode == 32 && this.timesBuzzed < 1) {
+                    this.canBuzz = true;
                     this.focused = true;
+                }
+                if (e.keycode == 80)
+                    this.toggleBuffer();
+                if (e.keycode == 78)
+                    this.nextQuestion();
             },
             check: function(arr) {
                 var scores = []
@@ -94,7 +116,9 @@ window.onload = function() {
                 }
             },
             submit: function() {
-                this.canBuzz = false;
+            	if (this.focused) {
+            		this.focused = false;
+            	}
                 this.timerBuffer = -1;
                 answer = this.input.trim();
                 this.input = "";
@@ -103,8 +127,6 @@ window.onload = function() {
         }
     })
 }
-
-
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
