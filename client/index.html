@@ -4,17 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Crackbowl</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
     <script src="js/vue.js"></script>
     <script src="js/main.js"></script>
-    <script src="https://gstatic.com/firebasejs/3.0.3/firebase.js"></script>
-    <!-- VueFire -->
-    <script src="https://cdn.jsdelivr.net/vuefire/1.1.0/vuefire.min.js"></script>
     <script src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
     <script src="js/vue-focus.min.js"></script>
-    <link rel="stylesheet" href="css/skeleton.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/blazecss/latest/blaze.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/blazecss/2.11.0/components.navs.min.css">
     <link rel="stylesheet" href="https://npmcdn.com/tachyons@4.0.4/css/tachyons.min.css" />
+    <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
 
@@ -26,54 +23,44 @@
             <span class="c-nav__item c-nav__item--right">About</span>
         </nav>
     </header>
-    <main class="o-container o-container--xlarge" id="app">
-        <div class="mt4 pt4 c-input-group mb4">
-            <input class="c-field" type="text" :disabled="!canBuzz" v-model="input" v-on:keyup.enter="submit" v-on:focus="buzz" v-focus-model="focused" v-on:blur="unBuzz">
-            <button class="c-button c-button--primary" v-on:click="buzz">Buzz</button>
+    <main class="container" id="app">
+        <div class="mt5-ns mt4 mb3-ns mb1">
+            <input class="u-full-width" placeholder="Answers go here" type="text" :disabled="!canBuzz" v-model="input" v-on:keyup.enter="submit" v-on:focus="buzz" v-focus-model="focused">
         </div>
-        <button class="c-button c-button--primary" v-on:click="nextQuestion">Next</button>
-        <button class="c-button c-button--primary">WIP</button>
-        <div class="row u-letter-box--super" v-on:keyup.space="focus">
-            <div class="seven columns c-card bg-white ph3 pv2" id="questions">
-                <h5 class="c-heading c-heading--small">{{currentQuestion.heading}}</h5>
+        <a class="button" v-on:click="nextQuestion">Next</a>
+        <a class="button" v-on:click="buzz">Buzz</a>
+        <a class="button" v-on:click="toggleBuffer">{{toggle}}</a>
+        <div class="row mt3">
+            <div class="eight columns br2 bg-white ph4 pv4">
+                <h5>{{currentQuestion.heading}}</h5>
                 <p>{{textBuffer}}</p>
             </div>
-            <div class="five columns">
-                <div class="c-card pa3 bg-white">
-                    <b class="c-heading c-heading--small">Timer</b>
-                    <h3 class="c-heading c-heading--xlarge tc">{{timerBuffer/10}}</h3>
-                </div>
+            <div class="four columns fw3 pa3 ph4 br2 bg-white">
+                <h5>Timer</h5>
+                <h3 class="tc mb4">{{timerBuffer/10}}</h3>
+                <h5>Topics [WIP, broken ATM]</h5>
+                <select class="tc">
+                    <option value="All">All</option>
+                    <option value="Literature">Literature</option>
+                    <option value="History">History</option>
+                    <option value="Science">Science</option>
+                    <option value="Fine Arts">Fine Arts</option>
+                    <option value="Religion">Religion</option>
+                    <option value="Mythology">Mythology</option>
+                    <option value="Philosophy">Philosophy</option>
+                    <option value="Social Science">Social Science</option>
+                    <option value="Geography">Geography</option>
+                    <option value="Current Events">Current Events</option>
+                    <option value="Trash">Trash</option>
+                </select>
             </div>
         </div>
         <div class="row">
             <div class="seven columns ph3 pv2" id="questions">
-                <h5 class="c-heading c-heading--small">Console:</h5>
+                <h5 class="">Console:</h5>
                 <p v-for="item in consoleBuffer">{{item}}</p>
-            </div>
-            <div class="five columns">
-                <div class="c-card pa3 bg-white">
-                    <b class="c-heading c-heading--small">Topics [WIP]</b>
-                    <hr>
-                    <div>
-                        <select class="c-choice c-choice--success">
-                            <option value="All">All</option>
-                            <option value="Literature">Literature</option>
-                            <option value="History">History</option>
-                            <option value="Science">Science</option>
-                            <option value="Fine Arts">Fine Arts</option>
-                            <option value="Religion">Religion</option>
-                            <option value="Mythology">Mythology</option>
-                            <option value="Philosophy">Philosophy</option>
-                            <option value="Social Science">Social Science</option>
-                            <option value="Geography">Geography</option>
-                            <option value="Current Events">Current Events</option>
-                            <option value="Trash">Trash</option>
-                        </select>
-                    </div>
-                </div>
             </div>
         </div>
     </main>
 </body>
-
 </html>
