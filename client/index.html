@@ -16,10 +16,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/blazecss/latest/blaze.min.css">
     <link rel="stylesheet" href="https://npmcdn.com/tachyons@4.0.4/css/tachyons.min.css" />
     <link rel="stylesheet" href="css/main.css">
-
 </head>
 
-<body class="bg-near-white" >
+<body class="bg-near-white">
     <header>
         <nav class="c-nav c-nav--inline c-nav--high">
             <span class="c-nav__item">Crackbowl</span>
@@ -27,36 +26,32 @@
             <span class="c-nav__item c-nav__item--right">About</span>
         </nav>
     </header>
-    <main class="o-container o-container--xlarge" id="app" >
+    <main class="o-container o-container--xlarge" id="app">
         <div class="mt4 pt4 c-input-group mb4">
-            <input class="c-field" type="text" :disabled = "!canBuzz" v-model="input" v-on:keyup.enter="submit" v-on:focus="buzz" v-focus-model="focused" v-on:blur="unBuzz">
+            <input class="c-field" type="text" :disabled="!canBuzz" v-model="input" v-on:keyup.enter="submit" v-on:focus="buzz" v-focus-model="focused" v-on:blur="unBuzz">
             <button class="c-button c-button--primary" v-on:click="buzz">Buzz</button>
         </div>
-        <button class="c-button c-button--primary" v-on:click="nextQuestion">Next</button> <button class="c-button c-button--primary">WIP</button>
+        <button class="c-button c-button--primary" v-on:click="nextQuestion">Next</button>
+        <button class="c-button c-button--primary">WIP</button>
         <div class="row u-letter-box--super" v-on:keyup.space="focus">
-
             <div class="seven columns c-card bg-white ph3 pv2" id="questions">
                 <h5 class="c-heading c-heading--small">2002 ACF Regionals/College/Literature</h5>
                 <p>{{textBuffer}}</p>
             </div>
             <div class="five columns">
                 <div class="c-card pa3 bg-white">
-
                     <b>Timer</b>
                     <h3 class="c-heading c-heading--xlarge tc">{{timerBuffer/10}}</h3>
-
                 </div>
             </div>
         </div>
         <div class="row">
-
             <div class="seven columns ph3 pv2" id="questions">
                 <h5 class="c-heading c-heading--small">Console:</h5>
                 <p v-for="item in consoleBuffer">{{item}}</p>
             </div>
             <div class="five columns">
                 <div class="c-card pa3 bg-white">
-
                     <b>Players</b>
                     <ul class="pv1 c-list">
                         <li class="c-list__item">Ajusa</li>
@@ -64,21 +59,9 @@
                         <li class="c-list__item">Hitler</li>
                         <li class="c-list__item">^Not him</li>
                     </ul>
-
                 </div>
             </div>
         </div>
-        <!--<div class="c-toasts c-toasts--bottomright">
-            <div class="c-toast">
-                <button class="c-button c-button--close">×</button>Ajusa joined</div>
-            <div class="c-toast c-toast--secondary">
-                <button class="c-button c-button--close">×</button>Incorrect</div>
-            <div class="c-toast c-toast--success">
-                <button class="c-button c-button--close">×</button>Correct!</div>
-            <div class="c-toast c-toast--error">
-                <button class="c-button c-button--close">×</button>Disconnected</div>-->
-        </div>
     </main>
 </body>
-
 </html>
