@@ -65,10 +65,10 @@ window.onload = function() {
                     }
                 }
                 if (avg > .75) {
-                    this.consoleBuffer.push("Correct. The answer was " + this.currentQuestion.answerText);
+                    this.consoleBuffer.unshift("Correct. The answer was " + this.currentQuestion.answerText);
                     this.nextQuestion();
                 } else {
-                    this.consoleBuffer.push("Wrong. The answer was " + this.currentQuestion.answerText);
+                    this.consoleBuffer.unshift("Wrong. The answer was " + this.currentQuestion.answerText);
                     this.nextQuestion();
                 }
 
