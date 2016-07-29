@@ -35,12 +35,12 @@
         <button class="c-button c-button--primary">WIP</button>
         <div class="row u-letter-box--super" v-on:keyup.space="focus">
             <div class="seven columns c-card bg-white ph3 pv2" id="questions">
-                <h5 class="c-heading c-heading--small">2002 ACF Regionals/College/Literature</h5>
+                <h5 class="c-heading c-heading--small">{{currentQuestion.heading}}</h5>
                 <p>{{textBuffer}}</p>
             </div>
             <div class="five columns">
                 <div class="c-card pa3 bg-white">
-                    <b>Timer</b>
+                    <b class="c-heading c-heading--small">Timer</b>
                     <h3 class="c-heading c-heading--xlarge tc">{{timerBuffer/10}}</h3>
                 </div>
             </div>
@@ -52,16 +52,28 @@
             </div>
             <div class="five columns">
                 <div class="c-card pa3 bg-white">
-                    <b>Players</b>
-                    <ul class="pv1 c-list">
-                        <li class="c-list__item">Ajusa</li>
-                        <li class="c-list__item">Dark_P1ant</li>
-                        <li class="c-list__item">Hitler</li>
-                        <li class="c-list__item">^Not him</li>
-                    </ul>
+                    <b class="c-heading c-heading--small">Topics [WIP]</b>
+                    <hr>
+                    <div>
+                        <select class="c-choice c-choice--success">
+                            <option value="All">All</option>
+                            <option value="Literature">Literature</option>
+                            <option value="History">History</option>
+                            <option value="Science">Science</option>
+                            <option value="Fine Arts">Fine Arts</option>
+                            <option value="Religion">Religion</option>
+                            <option value="Mythology">Mythology</option>
+                            <option value="Philosophy">Philosophy</option>
+                            <option value="Social Science">Social Science</option>
+                            <option value="Geography">Geography</option>
+                            <option value="Current Events">Current Events</option>
+                            <option value="Trash">Trash</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
 </body>
+
 </html>
