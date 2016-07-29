@@ -29,20 +29,40 @@
     </header>
     <main class="o-container o-container--xlarge" id="app" >
         <div class="mt4 pt4 c-input-group">
-            <input class="c-field" type="text" v-model="input" v-on:keyup.enter="submit" v-on:focus="pauseBuffer" v-focus-model="focused" v-on:blur="startBuffer">
+            <input class="c-field" type="text" v-model="input" v-on:keyup.enter="submit" v-on:focus="buzz" v-focus-model="focused" v-on:blur="unBuzz">
             <button class="c-button c-button--primary" v-on:click="submit">Submit</button>
         </div>
         <div class="row u-letter-box--super" v-on:keyup.space="focus">
 
-            <div class="eight columns c-card bg-white ph3 pv2" id="questions">
+            <div class="seven columns c-card bg-white ph3 pv2" id="questions">
                 <h5 class="c-heading c-heading--small">2002 ACF Regionals/College/Literature</h5>
                 <p>{{textBuffer}}</p>
             </div>
-            <div class="four columns">
+            <div class="five columns">
+                <div class="c-card pa3 bg-white">
+
+                    <b>Timer</b>
+                    <ul class="pv1 c-list">
+                        <li class="c-list__item">Ajusa</li>
+                        <li class="c-list__item">Dark_P1ant</li>
+                        <li class="c-list__item">Hitler</li>
+                        <li class="c-list__item">^Not him</li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="seven columns ph3 pv2" id="questions">
+                <h5 class="c-heading c-heading--small">Console:</h5>
+                <p v-for="item in consoleBuffer">{{item}}</p>
+            </div>
+            <div class="five columns">
                 <div class="c-card pa3 bg-white">
 
                     <b>Players</b>
-                    <ul class="c-list">
+                    <ul class="pv1 c-list">
                         <li class="c-list__item">Ajusa</li>
                         <li class="c-list__item">Dark_P1ant</li>
                         <li class="c-list__item">Hitler</li>

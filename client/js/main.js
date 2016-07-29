@@ -20,6 +20,7 @@ window.onload = function() {
             pause: false,
             n: 0,
             focused: false,
+            consoleBuffer: [],
         },
         methods: {
             updateBuffer: function() {
@@ -32,16 +33,17 @@ window.onload = function() {
                     }, 40);
                 }
             },
-            pauseBuffer: function() {
+            buzz: function() {
                 this.pause = true;
+
             },
-            startBuffer: function() {
+            unBuzz: function() {
                 this.pause = false;
                 this.updateBuffer();
             },
             nextQuestion: function() {
-            	this.focused = false;
-            	this.n = 0;
+                this.focused = false;
+                this.n = 0;
                 this.currentQuestion = this.questions[getRandomInt(0, this.questions.length + 1)];
                 this.updateBuffer(0)
             },
@@ -57,7 +59,6 @@ window.onload = function() {
                     }
 
                 }
-                var sum;
                 avg = 0;
                 for (var i = scores.length - 1; i >= 0; i--) {
                     if (scores[i] > .75) {
@@ -65,10 +66,10 @@ window.onload = function() {
                     }
                 }
                 if (avg > .75) {
-                    alert("Correct.")
+                    this.consoleBuffer.push("Correct. The answer was " + this.currentQuestion.answerText + this.consoleBuffer);
                     this.nextQuestion();
                 } else {
-                    alert(" Wrong. The answer was " + this.currentQuestion.answerText)
+                    this.consoleBuffer.push("Wrong. The answer was " + this.currentQuestion.answerText + this.consoleBuffer);
                     this.nextQuestion();
                 }
 
