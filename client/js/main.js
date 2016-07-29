@@ -3,7 +3,6 @@ window.onload = function() {
         el: '#app',
         mixins: [VueFocus.mixin],
         ready: function() {
-            // GET /someUrl
             this.$http.get('https://ajusa.github.io/crackbowl-scraper/output.json').then(function(response) {
                 this.questions = response.json();
                 this.nextQuestion();
@@ -11,7 +10,6 @@ window.onload = function() {
                 this.startTimer();
             });
             window.addEventListener('keyup', this.focus)
-
         },
         data: {
             questions: [],
@@ -101,6 +99,7 @@ window.onload = function() {
             },
             submit: function() {
                 this.canBuzz = false;
+                this.timerBuffer = -1;
                 answer = this.input.trim();
                 this.input = "";
                 for (var i = chars.length - 1; i >= 0; i--) {
