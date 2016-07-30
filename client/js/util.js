@@ -68,16 +68,19 @@ function stripWords(answer) {
     return arr;
 }
 
-function check(input,  answers) {
+function check(input, answers) {
     arr = stripWords(input.trim());
-    console.log(arr)
+    var temp;
     for (var i = arr.length - 1; i >= 0; i--) {
         for (var j = answers.length - 1; j >= 0; j--) {
             if (similar(arr[i], answers[j]) > .60) {
-                return true;
-            } else {
-                return false;
+                temp = true;
             }
         }
+    }
+    if (temp) {
+        return true;
+    } else {
+        return false;
     }
 }
