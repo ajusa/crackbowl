@@ -67,3 +67,18 @@ function stripWords(answer) {
     });
     return arr;
 }
+
+function check(input,  answers) {
+    arr = stripWords(input.trim());
+    for (var i = arr.length - 1; i >= 0; i--) {
+        for (var j = answers.length - 1; j >= 0; j--) {
+            if (similar(arr[i], answers[j]) > .65) {
+                return true;
+                break;
+            } else {
+                return false;
+                break;
+            }
+        }
+    }
+}
