@@ -75,7 +75,7 @@ var vm = new Vue({
                 this.canBuzz = true;
                 this.focused = true;
                 this.pause = true;
-                if (this.timerBuffer < 0) { this.timerBuffer = 50; }
+                this.timerBuffer = 50;
                 this.timesBuzzed++;
             }
         },
