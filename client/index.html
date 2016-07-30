@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>Crackbowl</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
     <script src="js/vue.js"></script>
@@ -19,14 +21,14 @@
 
 <body class="bg-near-white">
     <header>
-        <nav class="c-nav c-nav--inline c-nav--high">
+        <nav class="c-nav c-nav--inline">
             <span class="c-nav__item">Crackbowl</span>
             <span class="c-nav__item">Rooms</span>
             <span class="c-nav__item c-nav__item--right">About</span>
         </nav>
     </header>
     <main class="container" id="app">
-        <div class="mt5-ns mt4 mb3-ns mb1">
+        <div class="mt4-ns mt3 mb0-ns mb0">
             <input class="u-full-width" placeholder="Answers go here" type="text" :disabled="!canBuzz" v-model="input" v-on:keyup.enter="submit" v-focus-model="focused">
         </div>
         <a class="button" @click="nextQuestion">Next</a>
@@ -36,21 +38,25 @@
             <alert v-for="item in consoleBuffer" :data="item"></alert>
         </div>
         <div class="row mt1">
-            <div class="eight columns br2 bg-white ph4 pv4">
+            <div class="eight columns br2 bg-white ph4-ns ph3 pv4-ns pv2">
                 <h3 v-if="timerBuffer > -1" class="tc mb4">{{timerBuffer/10}}</h3>
                 <h5>{{currentQuestion.heading}}</h5>
                 <p>{{textBuffer}}</p>
             </div>
-            <div class="four columns fw3 pa3 ph4 br2 bg-white">
+            <div class="four columns tc fw3 pa3 ph4 br2 bg-white">
+                <h5>Score [WIP]</h5>
+                <h3>0</h3>
+                <hr>
                 <h5>Level [WIP]</h5>
-                <select class="tc">
+                <select class="">
                     <option value="All">All</option>
                     <option value="Literature">Middle School</option>
                     <option value="History">High School</option>
                     <option value="Science">Collegiate</option>
                 </select>
+                <hr>
                 <h5>Topics [WIP]</h5>
-                <select class="tc">
+                <select class="">
                     <option value="All">All</option>
                     <option value="Literature">Literature</option>
                     <option value="History">History</option>
@@ -69,12 +75,12 @@
     </main>
     <template id="alert-template">
         <div class="c-alerts__alert" v-bind:class="data.style">
-        <a @click="remove" class="c-button c-button--close">×</a>
-            {{data.text}}
+            <a @click="remove" class="c-button c-button--close">×</a> {{data.text}}
         </div>
     </template>
 </body>
 <script src="js/util.js"></script>
 <script src="js/alert.js"></script>
 <script src="js/main.js"></script>
+
 </html>

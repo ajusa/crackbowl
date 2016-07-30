@@ -34,7 +34,7 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 8px;
+    padding: 0 5px;
     box-sizing: border-box;
 }
 
@@ -50,15 +50,15 @@
 
 @media (min-width: 400px) {
     .container {
-        width: 90%;
+        width: 95%;
         padding: 0;
     }
 }
 
 
-/* For devices larger than 550px */
+/* For devices larger than 650px */
 
-@media (min-width: 550px) {
+@media (min-width: 650px) {
     .container {
         width: 80%;
     }
