@@ -13,7 +13,7 @@ window.onload = function() {
         },
         data: {
             questions: [],
-            currentQuestion: {exists: true,},
+            currentQuestion: { exists: true, },
             input: "",
             textBuffer: "Welcome to crackbowl! Please look at the console below to find out how to begin. Questions appear here",
             pause: false,
@@ -49,7 +49,7 @@ window.onload = function() {
                         self.timerBuffer = 30;
                         self.n++
                     }
-                }, 50);
+                }, 40);
             },
             toggleBuffer: function() {
                 if (this.toggle == "Pause") {
@@ -78,6 +78,7 @@ window.onload = function() {
                 }
             },
             nextQuestion: function() {
+            	this.canBuzz = false;
                 this.n = 0;
                 this.currentQuestion = this.questions[getRandomInt(0, this.questions.length + 1)];
                 this.pause = false;
@@ -85,16 +86,15 @@ window.onload = function() {
                 this.timesBuzzed = 0;
             },
             keys: function(e) {
-                if (e.keyCode == 32 && this.timesBuzzed < 1) {
-                    this.canBuzz = true;
-                    this.focused = true;
-                }
+                if (e.keyCode == 32)
+                    this.buzz();
                 if (e.keyCode == 80 && e.target.localName != "input")
                     this.toggleBuffer();
                 if (e.keyCode == 78 && e.target.localName != "input")
                     this.nextQuestion();
             },
             submit: function(arr) {
+            	this.canBuzz = false;
                 if (this.focused)
                     this.focused = false;
                 this.timerBuffer = -1;
