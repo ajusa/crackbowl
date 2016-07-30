@@ -7,6 +7,7 @@
     <title>Crackbowl</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
     <script src="js/vue.js"></script>
+    <script src="js/util.js"></script>
     <script src="js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
     <script src="js/vue-focus.min.js"></script>
@@ -26,7 +27,7 @@
     </header>
     <main class="container" id="app">
         <div class="mt5-ns mt4 mb3-ns mb1">
-            <input class="u-full-width" placeholder="Answers go here" type="text" :disabled="!canBuzz" v-model="input" v-on:keyup.enter="submit" v-on:focus="buzz" v-focus-model="focused">
+            <input class="u-full-width" placeholder="Answers go here" type="text" :disabled="!canBuzz" v-model="input" v-on:keyup.enter="submit" v-focus-model="focused">
         </div>
         <a class="button" v-on:click="nextQuestion">Next</a>
         <a class="button" v-on:click="buzz">Buzz</a>
@@ -38,7 +39,14 @@
                 <p>{{textBuffer}}</p>
             </div>
             <div class="four columns fw3 pa3 ph4 br2 bg-white">
-                <h5>Topics [WIP, broken ATM]</h5>
+            <h5>Level [WIP]</h5>
+                <select class="tc">
+                    <option value="All">All</option>
+                    <option value="Literature">Middle School</option>
+                    <option value="History">High School</option>
+                    <option value="Science">Collegiate</option>
+                </select>
+                <h5>Topics [WIP]</h5>
                 <select class="tc">
                     <option value="All">All</option>
                     <option value="Literature">Literature</option>
@@ -53,6 +61,7 @@
                     <option value="Current Events">Current Events</option>
                     <option value="Trash">Trash</option>
                 </select>
+
             </div>
         </div>
         <div class="row">
