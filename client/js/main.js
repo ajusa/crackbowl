@@ -99,7 +99,6 @@ var vm = new Vue({
             this.canBuzz = false;
             this.focused = false;
             this.timerBuffer = -1;
-            this.input = "";
             if (check(this.input, this.currentQuestion.answers)) {
                 this.consoleBuffer.unshift({
                     text: "Correct! The answer was " + this.currentQuestion.answerText,
@@ -118,6 +117,7 @@ var vm = new Vue({
                 });
 
             }
+            this.input = "";
             this.endQuestion();
         },
     }
