@@ -600,12 +600,21 @@ there.
 
 /* Larger than mobile */
 
+.c-nav__item {
+    padding-top: .5em;
+    padding-bottom: .5em;
+}
+
 @media (min-width: 400px) {}
 
 
 /* Larger than phablet (also point when grid becomes active) */
 
-@media (min-width: 550px) {}
+@media (min-width: 650px) {
+    .c-nav__item {
+        padding: 1em;
+    }
+}
 
 
 /* Larger than tablet */
