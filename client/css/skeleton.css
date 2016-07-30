@@ -34,7 +34,7 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 8px;
     box-sizing: border-box;
 }
 
@@ -50,7 +50,7 @@
 
 @media (min-width: 400px) {
     .container {
-        width: 85%;
+        width: 90%;
         padding: 0;
     }
 }

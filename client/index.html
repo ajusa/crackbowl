@@ -7,10 +7,11 @@
     <title>Crackbowl</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
     <script src="js/vue.js"></script>
-    <script src="js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
     <script src="js/vue-focus.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/blazecss/2.11.0/components.navs.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/blazecss/2.11.0/components.alerts.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/blazecss/2.11.0/components.buttons.min.css">
     <link rel="stylesheet" href="https://npmcdn.com/tachyons@4.0.4/css/tachyons.min.css" />
     <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="css/main.css">
@@ -26,19 +27,29 @@
     </header>
     <main class="container" id="app">
         <div class="mt5-ns mt4 mb3-ns mb1">
-            <input class="u-full-width" placeholder="Answers go here" type="text" :disabled="!canBuzz" v-model="input" v-on:keyup.enter="submit" v-on:focus="buzz" v-focus-model="focused">
+            <input class="u-full-width" placeholder="Answers go here" type="text" :disabled="!canBuzz" v-model="input" v-on:keyup.enter="submit" v-focus-model="focused">
         </div>
-        <a class="button" v-on:click="nextQuestion">Next</a>
-        <a class="button" v-on:click="buzz">Buzz</a>
-        <a class="button" v-on:click="toggleBuffer">{{toggle}}</a>
-        <div class="row mt3">
+        <a class="button" @click="nextQuestion">Next</a>
+        <a class="button" @click="buzz">Buzz</a>
+        <a class="button" @click="toggleBuffer">{{toggle}}</a>
+        <div class="row c-alerts mt1">
+            <alert v-for="item in consoleBuffer" :data="item"></alert>
+        </div>
+        <div class="row mt1">
             <div class="eight columns br2 bg-white ph4 pv4">
-            <h3 v-if = "timerBuffer > -1" class="tc mb4">{{timerBuffer/10}}</h3>
+                <h3 v-if="timerBuffer > -1" class="tc mb4">{{timerBuffer/10}}</h3>
                 <h5>{{currentQuestion.heading}}</h5>
                 <p>{{textBuffer}}</p>
             </div>
             <div class="four columns fw3 pa3 ph4 br2 bg-white">
-                <h5>Topics [WIP, broken ATM]</h5>
+                <h5>Level [WIP]</h5>
+                <select class="tc">
+                    <option value="All">All</option>
+                    <option value="Literature">Middle School</option>
+                    <option value="History">High School</option>
+                    <option value="Science">Collegiate</option>
+                </select>
+                <h5>Topics [WIP]</h5>
                 <select class="tc">
                     <option value="All">All</option>
                     <option value="Literature">Literature</option>
@@ -55,12 +66,15 @@
                 </select>
             </div>
         </div>
-        <div class="row">
-            <div class="seven columns ph3 pv2" id="questions">
-                <h5 class="">Console:</h5>
-                <p v-for="item in consoleBuffer">{{item}}</p>
-            </div>
-        </div>
     </main>
+    <template id="alert-template">
+        <div class="c-alerts__alert" v-bind:class="data.style">
+        <a @click="remove" class="c-button c-button--close">×</a>
+            {{data.text}}
+        </div>
+    </template>
 </body>
+<script src="js/util.js"></script>
+<script src="js/alert.js"></script>
+<script src="js/main.js"></script>
 </html>
