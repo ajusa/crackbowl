@@ -27,9 +27,9 @@
             <span class="c-nav__item c-nav__item--right">About</span>
         </nav>
     </header>
-    <main class="container" id="app">
-        <div class="mt4-ns mt3 mb0-ns mb0">
-            <input class="u-full-width" placeholder="Answers go here" type="text" :disabled="!canBuzz" v-model="input" v-on:keyup.enter="submit" v-focus-model="focused">
+    <main class="container" id="app" >
+        <div class="mt4-ns mt3 mb0-ns mb0" >
+            <input v-if="canBuzz" class="u-full-width" placeholder="Answers go here" type="text" :disabled="!canBuzz" v-model="input" v-on:keyup.enter="submit" v-focus-model="focused">
         </div>
         <a class="button" @click="nextQuestion">Next</a>
         <a class="button" @click="buzz">Buzz</a>
@@ -45,19 +45,17 @@
             </div>
             <div class="four columns tc fw3 pa3 ph4 br2 bg-white">
                 <h5>Score [WIP]</h5>
-                <h3>0</h3>
+                <h3>{{score}}</h3>
                 <hr>
                 <h5>Level [WIP]</h5>
-                <select class="">
-                    <option value="All">All</option>
-                    <option value="Literature">Middle School</option>
-                    <option value="History">High School</option>
-                    <option value="Science">Collegiate</option>
+                <select v-model="selected.level">
+                    <option value="MS">Middle School</option>
+                    <option value="HS">High School</option>
+                    <option value="College">Collegiate</option>
                 </select>
                 <hr>
                 <h5>Topics [WIP]</h5>
-                <select class="">
-                    <option value="All">All</option>
+                <select v-model="selected.subject">
                     <option value="Literature">Literature</option>
                     <option value="History">History</option>
                     <option value="Science">Science</option>
