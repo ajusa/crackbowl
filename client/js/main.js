@@ -2,8 +2,9 @@ var vm = new Vue({
     el: '#app',
     mixins: [VueFocus.mixin],
     ready: function() {
-        this.$http.get('https://ajusa.github.io/crackbowl-scraper/output.json').then(function(response) {
+        this.$http.get("https://ajusa.github.io/crackbowl-scraper/output.json").then(function(response) {
             this.questions = response.json();
+            this.loadQuestions();
             this.updateBuffer()
             this.startTimer();
             this.consoleBuffer.unshift({
@@ -26,8 +27,14 @@ var vm = new Vue({
         timerBuffer: -1,
         toggle: "Pause",
         timesBuzzed: 0,
+        selected: { level: "HS", subject: "History" },
+        score: 0,
     },
+
     methods: {
+        loadQuestions: function() {
+
+        },
         startTimer: function() {
             var self = this;
             setInterval(function() {
@@ -75,7 +82,7 @@ var vm = new Vue({
                 this.canBuzz = true;
                 this.focused = true;
                 this.pause = true;
-                this.timerBuffer = 50;
+                this.timerBuffer = 70;
                 this.timesBuzzed++;
             }
         },
@@ -107,6 +114,11 @@ var vm = new Vue({
                     },
                     time: 5000,
                 });
+                if (this.textBuffer.indexOf("*") == -1) {
+                    this.score = this.score + 10;
+                } else {
+                    this.score = this.score + 15;
+                }
             } else {
                 this.consoleBuffer.unshift({
                     text: "Incorrect! The answer was " + this.currentQuestion.answerText,
@@ -115,7 +127,8 @@ var vm = new Vue({
                     },
                     time: 5000,
                 });
-
+                if (this.n != this.currentQuestion.question.length)
+                    this.score = this.score - 5;
             }
             this.input = "";
             this.endQuestion();

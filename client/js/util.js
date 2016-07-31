@@ -3,7 +3,7 @@ function getRandomInt(min, max) {
 }
 var words = ["mention", "is", "either", "before", "or", "accept", "like", "answers", "[", "]", "on", "until", "it", "mentioned", "synonyms", "the", "do", "any", "kind", "of", "mention", "a"];
 var chars = [".", "[", "]", ",", "(", ")", ";", '"'];
-
+var subjects = ["Literature", "History", "Science", "Fine Arts", "Religion", "Mythology", "Philosophy", "Social Science", "Geography", "Current Events", "Trash"]
 function similar(s1, s2) {
     var longer = s1;
     var shorter = s2;
