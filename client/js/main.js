@@ -1,16 +1,13 @@
+var db = firebase.database()
 var vm = new Vue({
     el: '#app',
     mixins: [VueFocus.mixin],
     ready: function() {
-        this.$http.get("https://ajusa.github.io/crackbowl-scraper/output.json").then(function(response) {
-            this.questions = response.json();
-            this.loadQuestions();
-            this.updateBuffer()
-            this.startTimer();
-            this.consoleBuffer.unshift({
-                text: "Hit the next button (or n) to start a question, hit buzz (or space) to buzz, and hit pause/play (p) to toggle the question being read.",
-                time: 1000000,
-            });
+        this.updateBuffer()
+        this.startTimer();
+        this.consoleBuffer.unshift({
+            text: "Hit the next button (or n) to start a question, hit buzz (or space) to buzz, and hit pause/play (p) to toggle the question being read.",
+            time: 1000000,
         });
         window.addEventListener('keyup', this.keys)
     },
@@ -32,9 +29,6 @@ var vm = new Vue({
     },
 
     methods: {
-        loadQuestions: function() {
-
-        },
         startTimer: function() {
             var self = this;
             setInterval(function() {
@@ -87,9 +81,14 @@ var vm = new Vue({
             }
         },
         nextQuestion: function() {
+            var self = this;
+            db.ref("questions/" + self.selected.subject + "/count").on('value', function(int) {
+                db.ref("questions/" + self.selected.subject + "/list/" + getRandomInt(0, int.val() + 1)).on('value', function(snapshot) {
+                    self.currentQuestion = snapshot.val()
+                })
+            });
             this.canBuzz = false;
             this.n = 0;
-            this.currentQuestion = this.questions[getRandomInt(0, this.questions.length + 1)];
             this.pause = false;
             this.timerBuffer = -1;
             this.timesBuzzed = 0;
