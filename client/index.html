@@ -8,9 +8,9 @@
     <meta name="mobile-web-app-capable" content="yes">
     <title>Crackbowl</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
-    <script src="js/vue.js"></script>
+    <script src="lib/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
-    <script src="js/vue-focus.min.js"></script>
+    <script src="lib/vue-focus.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/blazecss/2.11.0/components.navs.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/blazecss/2.11.0/components.alerts.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/blazecss/2.11.0/components.buttons.min.css">
@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="css/main.css">
     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
     <script>
-    // Initialize Firebase
     var config = {
         apiKey: "AIzaSyAcG7nNgaJdArS9PDZwXMZmiTej7HQitGo",
         authDomain: "crackbowl-3dd7d.firebaseapp.com",
@@ -40,7 +39,7 @@
     </header>
     <main class="container">
         <div class="mt4-ns mt3 mb0-ns mb0">
-            <input v-if="canBuzz" class="u-full-width" placeholder="Answers go here" type="text" :disabled="!canBuzz" v-model="input" v-on:keyup.enter="submit" v-focus-model="focused">
+            <input v-if="canBuzz" class="u-full-width" placeholder="Type" type="text" :disabled="!canBuzz" v-model="input" v-on:keyup.enter="submit" v-focus-model="focused">
         </div>
         <a class="button" @click="buzz">Buzz</a>
         <a class="button" @click="nextQuestion">Next</a>
@@ -80,14 +79,9 @@
             </div>
         </div>
     </main>
-    <template id="alert-template">
-        <div class="c-alerts__alert" v-bind:class="data.style">
-            <a @click="remove" class="c-button c-button--close">×</a> {{data.text}}
-        </div>
-    </template>
 </body>
 <script src="js/util.js"></script>
-<script src="js/alert.js"></script>
+<script src="tags/alert.js"></script>
 <script src="js/main.js"></script>
 
 </html>

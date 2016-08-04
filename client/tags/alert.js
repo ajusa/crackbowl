@@ -1,12 +1,11 @@
 Vue.component('alert', {
-    template: "#alert-template",
     props: ['data'],
+    template: '<div class="c-alerts__alert" v-bind:class="data.style"><a @click="remove" class="c-button c-button--close">×</a> {{data.text}} </div>',
     ready: function() {
         this.startTimer();
     },
     data: function() {
         return { timeout: {}, }
-
     },
     methods: {
         startTimer: function() {
@@ -14,7 +13,7 @@ Vue.component('alert', {
             this.timeout = setTimeout(function() {
                 if (!self.hasBeenRemoved)
                     self.remove();
-            }, self.data.time || 10000)
+            }, self.data.time || 7000)
         },
         remove: function() {
             clearTimeout(this.timeout)

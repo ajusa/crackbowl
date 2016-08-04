@@ -1,13 +1,9 @@
 var db = firebase.database()
 var user;
 firebase.auth().getRedirectResult().then(function(result) {
-
     user = result.user;
-    if (user) {
-        console.log(result.user)
+    if (user) 
         vm.$data.log = "Log Out"
-    }
-
 })
 var vm = new Vue({
     el: 'body',
@@ -18,7 +14,6 @@ var vm = new Vue({
         window.addEventListener('keyup', this.keys)
     },
     data: {
-        questions: [],
         currentQuestion: { exists: true, },
         input: "",
         textBuffer: "Welcome to crackbowl! Hit the next button (or n) to start a question, hit buzz (or space) to buzz, and hit pause / play(p) to toggle the question being read. Questions are read here ",
@@ -29,7 +24,7 @@ var vm = new Vue({
         canBuzz: false,
         timerBuffer: -1,
         toggle: "Pause",
-        timesBuzzed: 0,
+        timesBuzzed: 1,
         selected: { level: "HS", subject: "History" },
         score: 0,
         log: "Log In",
@@ -68,12 +63,9 @@ var vm = new Vue({
             if (this.toggle == "Pause") {
                 this.pause = true;
                 this.toggle = "Play"
-                this.canBuzz = false;
             } else {
                 this.pause = false;
                 this.toggle = "Pause"
-                if (this.timesBuzzed < 1)
-                    this.canBuzz = true;
             }
         },
         endQuestion: function() {
@@ -113,34 +105,19 @@ var vm = new Vue({
         },
         submit: function() {
             this.canBuzz = false;
-            this.focused = false;
             this.timerBuffer = -1;
             if (check(this.input, this.currentQuestion.answers)) {
                 if (user)
                     db.ref("users/" + user.uid + "/correct").push(this.currentQuestion)
-
-                this.consoleBuffer.unshift({
-                    text: "Correct! The answer was " + this.currentQuestion.answerText,
-                    style: {
-                        'c-alerts__alert--success': true,
-                    },
-                    time: 5000,
-                });
-                if (this.textBuffer.indexOf("*") == -1) {
+                this.consoleBuffer.unshift({ text: "Correct! The answer was " + this.currentQuestion.answerText, style: { 'c-alerts__alert--success': true } });
+                if (this.textBuffer.indexOf("*") == -1)
                     this.score = this.score + 10;
-                } else {
+                else
                     this.score = this.score + 15;
-                }
             } else {
                 if (user)
                     db.ref("users/" + user.uid + "/incorrect").push(this.currentQuestion)
-                this.consoleBuffer.unshift({
-                    text: "Incorrect! The answer was " + this.currentQuestion.answerText,
-                    style: {
-                        'c-alerts__alert--error': true,
-                    },
-                    time: 5000,
-                });
+                this.consoleBuffer.unshift({ text: "Incorrect! The answer was " + this.currentQuestion.answerText, style: { 'c-alerts__alert--error': true } });
                 if (this.n != this.currentQuestion.question.length)
                     this.score = this.score - 5;
             }
