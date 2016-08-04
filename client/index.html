@@ -17,6 +17,18 @@
     <link rel="stylesheet" href="https://npmcdn.com/tachyons@4.0.4/css/tachyons.min.css" />
     <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="css/main.css">
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyAcG7nNgaJdArS9PDZwXMZmiTej7HQitGo",
+        authDomain: "crackbowl-3dd7d.firebaseapp.com",
+        databaseURL: "https://crackbowl-3dd7d.firebaseio.com",
+        storageBucket: "crackbowl-3dd7d.appspot.com",
+    };
+    firebase.initializeApp(config);
+    Vue.use(VueFire)
+    </script>
 </head>
 
 <body class="bg-near-white">
@@ -27,8 +39,8 @@
             <span class="c-nav__item c-nav__item--right">About</span>
         </nav>
     </header>
-    <main class="container" id="app" >
-        <div class="mt4-ns mt3 mb0-ns mb0" >
+    <main class="container" id="app">
+        <div class="mt4-ns mt3 mb0-ns mb0">
             <input v-if="canBuzz" class="u-full-width" placeholder="Answers go here" type="text" :disabled="!canBuzz" v-model="input" v-on:keyup.enter="submit" v-focus-model="focused">
         </div>
         <a class="button" @click="nextQuestion">Next</a>
@@ -44,17 +56,15 @@
                 <p>{{textBuffer}}</p>
             </div>
             <div class="four columns tc fw3 pa3 ph4 br2 bg-white">
-                <h5>Score [WIP]</h5>
+                <h5>Score</h5>
                 <h3>{{score}}</h3>
                 <hr>
-                <h5>Level [WIP]</h5>
+                <h5>Level</h5>
                 <select v-model="selected.level">
-                    <option value="MS">Middle School</option>
                     <option value="HS">High School</option>
-                    <option value="College">Collegiate</option>
                 </select>
                 <hr>
-                <h5>Topics [WIP]</h5>
+                <h5>Topics</h5>
                 <select v-model="selected.subject">
                     <option value="Literature">Literature</option>
                     <option value="History">History</option>
