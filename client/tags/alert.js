@@ -6,7 +6,6 @@ Vue.component('alert', {
     },
     data: function() {
         return { timeout: {}, }
-
     },
     methods: {
         startTimer: function() {
