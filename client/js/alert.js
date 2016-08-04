@@ -4,8 +4,9 @@ Vue.component('alert', {
     ready: function() {
         this.startTimer();
     },
-    data: {
-        timeout: {},
+    data: function() {
+        return { timeout: {}, }
+
     },
     methods: {
         startTimer: function() {

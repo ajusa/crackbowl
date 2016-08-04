@@ -27,7 +27,6 @@
         storageBucket: "crackbowl-3dd7d.appspot.com",
     };
     firebase.initializeApp(config);
-    Vue.use(VueFire)
     </script>
 </head>
 
@@ -35,16 +34,17 @@
     <header>
         <nav class="c-nav c-nav--inline">
             <span class="c-nav__item">Crackbowl</span>
-            <span class="c-nav__item">Rooms</span>
-            <span class="c-nav__item c-nav__item--right">About</span>
+            <span class="c-nav__item">Rooms [WIP]</span>
+            <span class="c-nav__item">About</span>
+            <span class="c-nav__item c-nav__item--right">Log In</span>
         </nav>
     </header>
     <main class="container" id="app">
         <div class="mt4-ns mt3 mb0-ns mb0">
             <input v-if="canBuzz" class="u-full-width" placeholder="Answers go here" type="text" :disabled="!canBuzz" v-model="input" v-on:keyup.enter="submit" v-focus-model="focused">
         </div>
-        <a class="button" @click="nextQuestion">Next</a>
         <a class="button" @click="buzz">Buzz</a>
+        <a class="button" @click="nextQuestion">Next</a>
         <a class="button" @click="toggleBuffer">{{toggle}}</a>
         <div class="row c-alerts mt1">
             <alert v-for="item in consoleBuffer" :data="item"></alert>
