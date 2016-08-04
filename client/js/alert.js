@@ -14,7 +14,7 @@ Vue.component('alert', {
             this.timeout = setTimeout(function() {
                 if (!self.hasBeenRemoved)
                     self.remove();
-            }, self.data.time)
+            }, self.data.time || 10000)
         },
         remove: function() {
             clearTimeout(this.timeout)

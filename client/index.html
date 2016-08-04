@@ -36,10 +36,10 @@
             <span class="c-nav__item">Crackbowl</span>
             <span class="c-nav__item">Rooms [WIP]</span>
             <span class="c-nav__item">About</span>
-            <span class="c-nav__item c-nav__item--right">Log In</span>
+            <span class="c-nav__item c-nav__item--right" @click="signIn">{{log}}</span>
         </nav>
     </header>
-    <main class="container" id="app">
+    <main class="container">
         <div class="mt4-ns mt3 mb0-ns mb0">
             <input v-if="canBuzz" class="u-full-width" placeholder="Answers go here" type="text" :disabled="!canBuzz" v-model="input" v-on:keyup.enter="submit" v-focus-model="focused">
         </div>

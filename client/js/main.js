@@ -1,21 +1,27 @@
 var db = firebase.database()
+var user;
+firebase.auth().getRedirectResult().then(function(result) {
+
+    user = result.user;
+    if (user) {
+        console.log(result.user)
+        vm.$data.log = "Log Out"
+    }
+
+})
 var vm = new Vue({
-    el: '#app',
+    el: 'body',
     mixins: [VueFocus.mixin],
     ready: function() {
         this.updateBuffer()
         this.startTimer();
-        this.consoleBuffer.unshift({
-            text: "Hit the next button (or n) to start a question, hit buzz (or space) to buzz, and hit pause/play (p) to toggle the question being read.",
-            time: 1000000,
-        });
         window.addEventListener('keyup', this.keys)
     },
     data: {
         questions: [],
         currentQuestion: { exists: true, },
         input: "",
-        textBuffer: "Welcome to crackbowl! Please look at the console above to find out how to begin. Questions appear here",
+        textBuffer: "Welcome to crackbowl! Hit the next button (or n) to start a question, hit buzz (or space) to buzz, and hit pause / play(p) to toggle the question being read. Questions are read here ",
         pause: false,
         n: 0,
         focused: false,
@@ -26,9 +32,13 @@ var vm = new Vue({
         timesBuzzed: 0,
         selected: { level: "HS", subject: "History" },
         score: 0,
+        log: "Log In",
     },
-
     methods: {
+        signIn: function() {
+            var provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth().signInWithRedirect(provider);
+        },
         startTimer: function() {
             var self = this;
             setInterval(function() {
@@ -45,10 +55,10 @@ var vm = new Vue({
         updateBuffer: function() {
             var self = this;
             setInterval(function() {
-                if (self.n < (self.currentQuestion.question.length) && !self.pause) {
+                if (self.n < (self.currentQuestion.question.length || 0) && !self.pause) {
                     self.textBuffer = self.currentQuestion.question.substring(0, self.n + 1);
                     self.n++;
-                } else if (self.n == self.currentQuestion.question.length) {
+                } else if (self.n == (self.currentQuestion.question.length || 0)) {
                     self.timerBuffer = 30;
                     self.n++
                 }
@@ -106,6 +116,9 @@ var vm = new Vue({
             this.focused = false;
             this.timerBuffer = -1;
             if (check(this.input, this.currentQuestion.answers)) {
+                if (user)
+                    db.ref("users/" + user.uid + "/correct").push(this.currentQuestion)
+
                 this.consoleBuffer.unshift({
                     text: "Correct! The answer was " + this.currentQuestion.answerText,
                     style: {
@@ -119,6 +132,8 @@ var vm = new Vue({
                     this.score = this.score + 15;
                 }
             } else {
+                if (user)
+                    db.ref("users/" + user.uid + "/incorrect").push(this.currentQuestion)
                 this.consoleBuffer.unshift({
                     text: "Incorrect! The answer was " + this.currentQuestion.answerText,
                     style: {
