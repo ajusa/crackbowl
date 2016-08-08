@@ -43,7 +43,7 @@
         </div>
         <a class="button" @click="buzz">Buzz</a>
         <a class="button" @click="nextQuestion">Next</a>
-        <a class="button" @click="toggleBuffer">{{toggle}}</a>
+        <a class="button" @click="toggleBuffer">{{{toggle}}} </a>
         <div class="row c-alerts mt1">
             <alert v-for="item in consoleBuffer" :data="item"></alert>
         </div>
