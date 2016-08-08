@@ -2,8 +2,10 @@ var db = firebase.database()
 var user;
 firebase.auth().getRedirectResult().then(function(result) {
     user = result.user;
-    if (user) 
+    if (user) {
         vm.$data.log = "Log Out"
+        vm.$data.consoleBuffer.unshift({ text: "Welcome " + user.displayName, style: { 'c-alerts__alert--success': true } });
+    }
 })
 var vm = new Vue({
     el: 'body',
@@ -118,7 +120,7 @@ var vm = new Vue({
                 if (user)
                     db.ref("users/" + user.uid + "/incorrect").push(this.currentQuestion)
                 this.consoleBuffer.unshift({ text: "Incorrect! The answer was " + this.currentQuestion.answerText, style: { 'c-alerts__alert--error': true } });
-                if (this.n != this.currentQuestion.question.length)
+                if (this.n < this.currentQuestion.question.length)
                     this.score = this.score - 5;
             }
             this.input = "";
