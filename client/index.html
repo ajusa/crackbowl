@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+    <script src="lib/nprogress.js"></script>
+    <link rel='stylesheet' href="css/nprogress.css" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -18,6 +20,7 @@
     <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="css/main.css">
     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+    <script src="lib/progressbar.min.js"></script>
     <script>
     var config = {
         apiKey: "AIzaSyAcG7nNgaJdArS9PDZwXMZmiTej7HQitGo",
@@ -30,56 +33,70 @@
 </head>
 
 <body class="bg-near-white">
-    <header>
-        <nav class="c-nav c-nav--inline">
-            <span class="c-nav__item" href="/">Crackbowl</span>
-            <span class="c-nav__item">About</span>
-            <span class="c-nav__item c-nav__item--right" @click="signIn">{{log}}</span>
-        </nav>
-    </header>
-    <main class="container">
-        <div class="mt4-ns mt3 mb0-ns mb0">
-            <input v-if="canBuzz" class="u-full-width" placeholder="Type" type="text" :disabled="!canBuzz" v-model="input" v-on:keyup.enter="submit" v-focus-model="focused">
-        </div>
-        <a class="button" @click="buzz">Buzz</a>
-        <a class="button" @click="nextQuestion">Next</a>
-        <a class="button" @click="toggleBuffer">{{{toggle}}} </a>
-        <div class="row c-alerts mt1">
-            <alert v-for="item in consoleBuffer" :data="item"></alert>
-        </div>
-        <div class="row mt1">
-            <div class="eight columns br2 bg-white ph4-ns ph3 pv4-ns pv2">
-                <h3 v-if="timerBuffer > -1" class="tc mb4">{{timerBuffer/10}}</h3>
-                <h5>{{currentQuestion.heading}}</h5>
-                <p>{{textBuffer}}</p>
+    <div style="display:none" id="wrapper">
+        <header>
+            <nav class="c-nav c-nav--inline">
+                <span class="c-nav__item" href="/">Crackbowl</span>
+                <span class="c-nav__item">About</span>
+                <span class="c-nav__item c-nav__item--right" @click="signIn">{{log}}</span>
+            </nav>
+        </header>
+        <main class="container">
+            <div class="mt4-ns mt3 mb0-ns mb0">
+                <input v-if="canBuzz" class="u-full-width" placeholder="Type" type="text" :disabled="!canBuzz" v-model="input" v-on:keyup.enter="submit" v-focus-model="focused">
             </div>
-            <div class="four columns tc fw3 pa3 ph4 br2 bg-white">
-                <h5>Score</h5>
-                <h3>{{score}}</h3>
-                <hr>
-                <h5>Level</h5>
-                <select v-model="selected.level">
-                    <option value="HS">High School</option>
-                </select>
-                <hr>
-                <h5>Topics</h5>
-                <select v-model="selected.subject">
-                    <option value="Literature">Literature</option>
-                    <option value="History">History</option>
-                    <option value="Science">Science</option>
-                    <option value="Fine Arts">Fine Arts</option>
-                    <option value="Religion">Religion</option>
-                    <option value="Mythology">Mythology</option>
-                    <option value="Philosophy">Philosophy</option>
-                    <option value="Social Science">Social Science</option>
-                    <option value="Geography">Geography</option>
-                    <option value="Current Events">Current Events</option>
-                    <option value="Trash">Trash</option>
-                </select>
+            <a class="button" @click="buzz">Buzz</a>
+            <a class="button" @click="nextQuestion">Next</a>
+            <a class="button" @click="toggleBuffer">{{{toggle}}} </a>
+            <div class="row c-alerts mt1">
+                <alert v-for="item in consoleBuffer" class="animated" transition="bounce" :data="item"></alert>
             </div>
-        </div>
-    </main>
+            <div class="row mt1">
+                <div class="eight columns br2 bg-white ph4-ns ph3 pv4-ns pv2">
+                    <div v-show="timerBuffer > -1" id="timer" class="u-full-width">
+                        <h3 class="tc mb4">{{timerBuffer/10}} </h3>
+                    </div>
+                    <h5>{{currentQuestion.heading}}</h5>
+                    <p>{{textBuffer}}</p>
+                </div>
+                <div class="four columns tc fw3 pa3 ph4 br2 bg-white">
+                    <h5>Score</h5>
+                    <h3>{{score}}</h3>
+                    <hr>
+                    <h5>Level</h5>
+                    <select v-model="selected.level">
+                        <option value="HS">High School</option>
+                    </select>
+                    <hr>
+                    <h5>Topics</h5>
+                    <select v-model="selected.subject">
+                        <option value="Literature">Literature</option>
+                        <option value="History">History</option>
+                        <option value="Science">Science</option>
+                        <option value="Fine Arts">Fine Arts</option>
+                        <option value="Religion">Religion</option>
+                        <option value="Mythology">Mythology</option>
+                        <option value="Philosophy">Philosophy</option>
+                        <option value="Social Science">Social Science</option>
+                        <option value="Geography">Geography</option>
+                        <option value="Current Events">Current Events</option>
+                        <option value="Trash">Trash</option>
+                    </select>
+                    <hr>
+                    <h5>Sounds [WIP]</h5>
+                    <select>
+                        <option value="none">None</option>
+                        <option value="normal">Normal</option>
+                        <option value="mlg">MLG</option>
+                    </select>
+                </div>
+            </div>
+        </main>
+    </div>
 </body>
+<script>
+NProgress.start()
+</script>
 <script src="js/util.js"></script>
 <script src="tags/alert.js"></script>
 <script src="js/main.js"></script>

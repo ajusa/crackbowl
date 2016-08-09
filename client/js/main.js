@@ -1,11 +1,32 @@
 var db = firebase.database()
 var user;
 firebase.auth().getRedirectResult().then(function(result) {
+    NProgress.done()
+    document.getElementById('wrapper').style.display=""
+    document.getElementById('wrapper').className = "animated fadeIn"
     user = result.user;
     if (user) {
         vm.$data.log = "Log Out"
         vm.$data.consoleBuffer.unshift({ text: "Welcome " + user.displayName, style: { 'c-alerts__alert--success': true } });
+        db.ref("users/" + user.uid+"/name").set(user.displayName)
     }
+})
+var bar = new ProgressBar.Line('#timer', {
+    easing: 'linear',
+    strokeWidth: 3,
+    from: { color: '#f1c40f' },
+    to: { color: '#e74c3c' },
+    trailColor: '#eee',
+    trailWidth: 3,
+    duration: 7000,
+    svgStyle: { width: '100%', height: '100%' },
+    step: function(state, bar) {
+        bar.path.setAttribute('stroke', state.color);
+    }
+});
+Vue.transition('bounce', {
+    enterClass: 'bounceInLeft',
+    leaveClass: 'bounceOutRight'
 })
 var vm = new Vue({
     el: 'body',
@@ -33,8 +54,16 @@ var vm = new Vue({
     },
     methods: {
         signIn: function() {
-            var provider = new firebase.auth.GoogleAuthProvider();
-            firebase.auth().signInWithRedirect(provider);
+            var self = this;
+            if (user) {
+                firebase.auth().signOut().then(function() {
+                    self.consoleBuffer.unshift({ text: "Signed out successfully", style: { 'c-alerts__alert--success': true } });
+                    self.log = "Log In"
+                });
+            } else {
+                var provider = new firebase.auth.GoogleAuthProvider();
+                firebase.auth().signInWithRedirect(provider);
+            }
         },
         startTimer: function() {
             var self = this;
@@ -57,6 +86,7 @@ var vm = new Vue({
                     self.n++;
                 } else if (self.n == (self.currentQuestion.question.length || 0)) {
                     self.timerBuffer = 30;
+                    bar.animate(1);
                     self.n++
                 }
             }, 50);
@@ -81,6 +111,7 @@ var vm = new Vue({
                 this.focused = true;
                 this.pause = true;
                 this.timerBuffer = 70;
+                bar.animate(1);
                 this.timesBuzzed++;
             }
         },
@@ -109,16 +140,18 @@ var vm = new Vue({
             this.canBuzz = false;
             this.timerBuffer = -1;
             if (check(this.input, this.currentQuestion.answers)) {
+                this.currentQuestion.correct = true;
                 if (user)
-                    db.ref("users/" + user.uid + "/correct").push(this.currentQuestion)
+                    db.ref("users/" + user.uid + "/questions").push(this.currentQuestion)
                 this.consoleBuffer.unshift({ text: "Correct! The answer was " + this.currentQuestion.answerText, style: { 'c-alerts__alert--success': true } });
                 if (this.textBuffer.indexOf("*") == -1)
                     this.score = this.score + 10;
                 else
                     this.score = this.score + 15;
             } else {
+                this.currentQuestion.correct = false;
                 if (user)
-                    db.ref("users/" + user.uid + "/incorrect").push(this.currentQuestion)
+                    db.ref("users/" + user.uid + "/questions").push(this.currentQuestion)
                 this.consoleBuffer.unshift({ text: "Incorrect! The answer was " + this.currentQuestion.answerText, style: { 'c-alerts__alert--error': true } });
                 if (this.n < this.currentQuestion.question.length)
                     this.score = this.score - 5;
