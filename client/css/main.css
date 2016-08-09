@@ -1,15 +1,7 @@
 body{
     font-family: 'Roboto';
 }
-img {
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   width: 8rem;
-   height: 8rem;
-   margin-top: -4rem; /* Half the height */
-   margin-left: -4rem; /* Half the width */
-}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
