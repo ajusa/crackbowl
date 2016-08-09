@@ -1,14 +1,15 @@
 var db = firebase.database()
 var user;
 firebase.auth().getRedirectResult().then(function(result) {
-    NProgress.done()
-    document.getElementById('wrapper').style.display=""
+    document.getElementById('loading').style.display = "none"
+    document.getElementById('wrapper').style.display = ""
     document.getElementById('wrapper').className = "animated fadeIn"
+
     user = result.user;
     if (user) {
         vm.$data.log = "Log Out"
         vm.$data.consoleBuffer.unshift({ text: "Welcome " + user.displayName, style: { 'c-alerts__alert--success': true } });
-        db.ref("users/" + user.uid+"/name").set(user.displayName)
+        db.ref("users/" + user.uid + "/name").set(user.displayName)
     }
 })
 var bar = new ProgressBar.Line('#timer', {

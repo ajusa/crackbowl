@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bg-near-white">
+<style>
+img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8rem;
+    height: 8rem;
+    margin-top: -4rem;
+    margin-left: -4rem;
+}
+</style>
+<img src="lib/loading-bars.svg" id="loading">
 <head>
-    <script src="lib/nprogress.js"></script>
-    <link rel='stylesheet' href="css/nprogress.css" />
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <title>Crackbowl</title>
@@ -33,8 +43,8 @@
     </script>
 </head>
 
-<body class="bg-near-white">
-    <div style="display:none" id="wrapper">
+<body>
+    <div id="wrapper" style="display:none">
         <header>
             <nav class="c-nav c-nav--inline">
                 <span class="c-nav__item" href="/">Crackbowl</span>
@@ -42,7 +52,7 @@
                 <span class="c-nav__item c-nav__item--right" @click="signIn">{{log}}</span>
             </nav>
         </header>
-        <main class="container" v-touch:swipeleft="nextQuestion">
+        <main class="container" v-touch:swipeleft="nextQuestion" v-touch:swiperight="buzz" v-touch:pinch="toggleBuffer">
             <div class="mt4-ns mt3 mb0-ns mb0">
                 <input v-if="canBuzz" class="u-full-width" placeholder="Type" type="text" :disabled="!canBuzz" v-model="input" v-on:keyup.enter="submit" v-focus-model="focused">
             </div>
@@ -96,10 +106,10 @@
     </div>
 </body>
 <script>
-NProgress.start()
 Vue.use(VueTouch)
 </script>
 <script src="js/util.js"></script>
 <script src="tags/alert.js"></script>
 <script src="js/main.js"></script>
+
 </html>
