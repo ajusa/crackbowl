@@ -73,7 +73,7 @@ function check(input, answers) {
     var temp;
     for (var i = arr.length - 1; i >= 0; i--) {
         for (var j = answers.length - 1; j >= 0; j--) {
-            if (similar(arr[i], answers[j]) > .60) {
+            if (similar(arr[i], answers[j]) > .75) {
                 temp = true;
             }
         }

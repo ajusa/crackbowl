@@ -8,6 +8,23 @@ firebase.auth().getRedirectResult().then(function(result) {
         vm.$data.consoleBuffer.unshift({ text: "Welcome " + user.displayName, style: { 'c-alerts__alert--success': true } });
     }
 })
+var bar = new ProgressBar.Line('#timer', {
+    easing: 'linear',
+    strokeWidth: 3,
+    from: { color: '#f1c40f' },
+    to: { color: '#e74c3c' },
+    trailColor: '#eee',
+    trailWidth: 3,
+    duration: 7000,
+    svgStyle: { width: '100%', height: '100%' },
+    step: function(state, bar) {
+        bar.path.setAttribute('stroke', state.color);
+    }
+});
+Vue.transition('bounce', {
+  enterClass: 'bounceInLeft',
+  leaveClass: 'bounceOutRight'
+})
 var vm = new Vue({
     el: 'body',
     mixins: [VueFocus.mixin],
@@ -58,6 +75,7 @@ var vm = new Vue({
                     self.n++;
                 } else if (self.n == (self.currentQuestion.question.length || 0)) {
                     self.timerBuffer = 30;
+                    bar.animate(1);
                     self.n++
                 }
             }, 50);
@@ -82,6 +100,7 @@ var vm = new Vue({
                 this.focused = true;
                 this.pause = true;
                 this.timerBuffer = 70;
+                bar.animate(1);
                 this.timesBuzzed++;
             }
         },
