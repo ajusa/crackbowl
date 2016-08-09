@@ -1,6 +1,7 @@
 var db = firebase.database()
 var user;
 firebase.auth().getRedirectResult().then(function(result) {
+    NProgress.done()
     user = result.user;
     if (user) {
         vm.$data.log = "Log Out"
