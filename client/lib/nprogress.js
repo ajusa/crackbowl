@@ -24,7 +24,7 @@
     trickle: true,
     trickleRate: 0.02,
     trickleSpeed: 800,
-    showSpinner: false,
+    showSpinner: true,
     barSelector: '[role="bar"]',
     spinnerSelector: '[role="spinner"]',
     parent: 'body',
