@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <script src="lib/nprogress.js"></script>
     <link rel='stylesheet' href="css/nprogress.css" />
@@ -20,6 +19,8 @@
     <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="css/main.css">
     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+    <script src="lib/hammer.min.js"></script>
+    <script src="lib/vue-touch.min.js"></script>
     <script src="lib/progressbar.min.js"></script>
     <script>
     var config = {
@@ -41,7 +42,7 @@
                 <span class="c-nav__item c-nav__item--right" @click="signIn">{{log}}</span>
             </nav>
         </header>
-        <main class="container">
+        <main class="container" v-touch:swipeleft="nextQuestion">
             <div class="mt4-ns mt3 mb0-ns mb0">
                 <input v-if="canBuzz" class="u-full-width" placeholder="Type" type="text" :disabled="!canBuzz" v-model="input" v-on:keyup.enter="submit" v-focus-model="focused">
             </div>
@@ -96,9 +97,9 @@
 </body>
 <script>
 NProgress.start()
+Vue.use(VueTouch)
 </script>
 <script src="js/util.js"></script>
 <script src="tags/alert.js"></script>
 <script src="js/main.js"></script>
-
 </html>
