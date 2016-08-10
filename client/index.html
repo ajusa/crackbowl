@@ -35,7 +35,7 @@
                 <span class="c-nav__item c-nav__item--right" @click="signIn">{{log}}</span>
             </nav>
         </header>
-        <main class="container" v-touch:swipeleft="nextQuestion" v-touch:swiperight="buzz" v-touch:press="toggleBuffer">
+        <main class="container" >
             <div class="mt4-ns mt3 mb0-ns mb0">
                 <input v-if="canBuzz" class="u-full-width" placeholder="Type" type="text" :disabled="!canBuzz" v-model="input" v-on:keyup.enter="submit" v-focus-model="focused">
             </div>
@@ -46,7 +46,7 @@
                 <alert v-for="item in consoleBuffer" class="animated" transition="bounce" :data="item"></alert>
             </div>
             <div class="row mt1">
-                <div class="eight columns br2 bg-white ph4-ns ph3 pv4-ns pv2">
+                <div class="eight columns br2 bg-white ph4-ns ph3 pv4-ns pv2" v-touch:swipeleft="nextQuestion" v-touch:swiperight="buzz" v-touch:press="toggleBuffer">
                     <div v-show="timerBuffer > -1" id="timer" class="u-full-width">
                         <h3 class="tc mb4">{{timerBuffer/10}} </h3>
                     </div>
@@ -89,10 +89,6 @@
     </div>
 </body>
 <script>
-VueTouch.config.swipe = {
-  dragLockToAxis: false,
-  dragBlockHorizontal: true
-}
 Vue.use(VueTouch)
 </script>
 <script src="js/util.js"></script>
