@@ -1,49 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" class="bg-near-white">
-<style>
-img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 8rem;
-    height: 8rem;
-    margin-top: -4rem;
-    margin-left: -4rem;
-}
-</style>
-<img src="lib/loading-bars.svg" id="loading">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <title>Crackbowl</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
     <script src="lib/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
     <script src="lib/vue-focus.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/blazecss/2.11.0/components.navs.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/blazecss/2.11.0/components.alerts.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/blazecss/2.11.0/components.buttons.min.css">
-    <link rel="stylesheet" href="https://npmcdn.com/tachyons@4.0.4/css/tachyons.min.css" />
-    <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="css/main.css">
     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
     <script src="lib/hammer.min.js"></script>
     <script src="lib/vue-touch.min.js"></script>
     <script src="lib/progressbar.min.js"></script>
     <script>
-    var config = {
+    firebase.initializeApp({
         apiKey: "AIzaSyAcG7nNgaJdArS9PDZwXMZmiTej7HQitGo",
         authDomain: "crackbowl-3dd7d.firebaseapp.com",
         databaseURL: "https://crackbowl-3dd7d.firebaseio.com",
         storageBucket: "crackbowl-3dd7d.appspot.com",
-    };
-    firebase.initializeApp(config);
+    });
     </script>
 </head>
 
 <body>
+    <img src="lib/loading-bars.svg" id="loading" style="position: absolute;top: 50%;left: 50%;width: 8rem;height: 8rem;margin-top: -4rem;margin-left: -4rem;">
     <div id="wrapper" style="display:none">
         <header>
             <nav class="c-nav c-nav--inline">
@@ -52,7 +35,7 @@ img {
                 <span class="c-nav__item c-nav__item--right" @click="signIn">{{log}}</span>
             </nav>
         </header>
-        <main class="container" v-touch:swipeleft="nextQuestion" v-touch:swiperight="buzz" v-touch:pinch="toggleBuffer">
+        <main class="container" v-touch:swipeleft="nextQuestion" v-touch:swiperight="buzz" v-touch:press="toggleBuffer">
             <div class="mt4-ns mt3 mb0-ns mb0">
                 <input v-if="canBuzz" class="u-full-width" placeholder="Type" type="text" :disabled="!canBuzz" v-model="input" v-on:keyup.enter="submit" v-focus-model="focused">
             </div>
