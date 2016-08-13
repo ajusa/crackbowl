@@ -204,6 +204,7 @@ var vm = new Vue({
             firebase.auth().signInWithRedirect(provider);
         },
         menu: function(){
+            nav.resize();
             nav.toggle();
         },
         info: function() {
