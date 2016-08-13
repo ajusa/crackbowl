@@ -1,71 +1,61 @@
 var db = firebase.database()
 var user;
+var bar;
 firebase.auth().getRedirectResult().then(function(result) {
     document.getElementById('loading').style.display = "none"
     document.getElementById('wrapper').style.display = ""
     document.getElementById('wrapper').className = "animated fadeIn"
-
     user = result.user;
+    vm.$data.user = user;
     if (user) {
-        vm.$data.log = "Log Out"
-        vm.$data.consoleBuffer.unshift({ text: "Welcome " + user.displayName, style: { 'c-alerts__alert--success': true } });
+        this.$dispatch('alert', { text: "Welcome " + user.displayName, style: { 'c-alerts__alert--success': true } });
+        //vm.$data.consoleBuffer.unshift();
         db.ref("users/" + user.uid + "/name").set(user.displayName)
     }
 })
-var bar = new ProgressBar.Line('#timer', {
-    easing: 'linear',
-    strokeWidth: 3,
-    from: { color: '#f1c40f' },
-    to: { color: '#e74c3c' },
-    trailColor: '#eee',
-    trailWidth: 3,
-    duration: 7000,
-    svgStyle: { width: '100%', height: '100%' },
-    step: function(state, bar) {
-        bar.path.setAttribute('stroke', state.color);
-    }
-});
+
 Vue.transition('bounce', {
     enterClass: 'bounceInLeft',
     leaveClass: 'bounceOutRight'
 })
-var vm = new Vue({
-    el: 'body',
+
+Vue.component('questionview', {
+    template: "#questionView",
     mixins: [VueFocus.mixin],
     ready: function() {
         this.updateBuffer()
         this.startTimer();
         window.addEventListener('keyup', this.keys)
+        bar = new ProgressBar.Line('#timer', {
+            easing: 'linear',
+            strokeWidth: 3,
+            from: { color: '#f1c40f' },
+            to: { color: '#e74c3c' },
+            trailColor: '#eee',
+            trailWidth: 3,
+            duration: 7000,
+            svgStyle: { width: '100%', height: '100%' },
+            step: function(state, bar) {
+                bar.path.setAttribute('stroke', state.color);
+            }
+        });
     },
-    data: {
-        currentQuestion: { exists: true, },
-        input: "",
-        textBuffer: "Welcome to crackbowl! Hit the next button (or n) to start a question, hit buzz (or space) to buzz, and hit pause / play(p) to toggle the question being read. Questions are read here ",
-        pause: false,
-        n: 0,
-        focused: false,
-        consoleBuffer: [],
-        canBuzz: false,
-        timerBuffer: -1,
-        toggle: "Pause",
-        timesBuzzed: 1,
-        selected: { level: "HS", subject: "History" },
-        score: 0,
-        log: "Log In",
+    data: function() {
+        return {
+            currentQuestion: { exists: true, },
+            input: "",
+            textBuffer: "Welcome to crackbowl! Hit the next button (or n) to start a question, hit buzz (or space) to buzz, and hit pause / play(p) to toggle the question being read. Questions are read here ",
+            pause: false,
+            n: 0,
+            focused: false,
+            canBuzz: false,
+            timerBuffer: -1,
+            timesBuzzed: 1,
+            selected: { level: "HS", subject: "History" },
+            score: 0,
+        }
     },
     methods: {
-        signIn: function() {
-            var self = this;
-            if (user) {
-                firebase.auth().signOut().then(function() {
-                    self.consoleBuffer.unshift({ text: "Signed out successfully", style: { 'c-alerts__alert--success': true } });
-                    self.log = "Log In"
-                });
-            } else {
-                var provider = new firebase.auth.GoogleAuthProvider();
-                firebase.auth().signInWithRedirect(provider);
-            }
-        },
         startTimer: function() {
             var self = this;
             setInterval(function() {
@@ -92,14 +82,14 @@ var vm = new Vue({
                 }
             }, 50);
         },
+        pauseBuffer: function() {
+            this.pause = true;
+        },
+        playBuffer: function() {
+            this.pause = false;
+        },
         toggleBuffer: function() {
-            if (this.toggle == "Pause") {
-                this.pause = true;
-                this.toggle = "Play"
-            } else {
-                this.pause = false;
-                this.toggle = "Pause"
-            }
+            this.pause = !this.pause
         },
         endQuestion: function() {
             this.timerBuffer = -1;
@@ -142,23 +132,81 @@ var vm = new Vue({
             this.timerBuffer = -1;
             if (check(this.input, this.currentQuestion.answers)) {
                 this.currentQuestion.correct = true;
-                if (user)
-                    db.ref("users/" + user.uid + "/questions").push(this.currentQuestion)
-                this.consoleBuffer.unshift({ text: "Correct! The answer was " + this.currentQuestion.answerText, style: { 'c-alerts__alert--success': true } });
+                this.$emit('correct', this.currentQuestion)
                 if (this.textBuffer.indexOf("*") == -1)
                     this.score = this.score + 10;
                 else
                     this.score = this.score + 15;
             } else {
                 this.currentQuestion.correct = false;
-                if (user)
-                    db.ref("users/" + user.uid + "/questions").push(this.currentQuestion)
-                this.consoleBuffer.unshift({ text: "Incorrect! The answer was " + this.currentQuestion.answerText, style: { 'c-alerts__alert--error': true } });
+                this.$emit('incorrect', this.currentQuestion)
                 if (this.n < this.currentQuestion.question.length)
                     this.score = this.score - 5;
             }
             this.input = "";
             this.endQuestion();
         },
-    }
+    },
+    events: {
+        'correct': function(msg) {
+            if (user)
+                db.ref("users/" + user.uid + "/questions").push(this.currentQuestion)
+            this.$events.emit('alert', { text: "Correct! The answer was " + this.currentQuestion.answerText, style: { 'c-alerts__alert--success': true } });
+        },
+        'incorrect': function(msg) {
+            if (user)
+                db.ref("users/" + user.uid + "/questions").push(this.currentQuestion)
+            this.$events.emit('alert', { text: "Incorrect! The answer was " + this.currentQuestion.answerText, style: { 'c-alerts__alert--error': true } });
+        },
+    },
+});
+var vm = new Vue({
+    el: 'body',
+    data: {
+        user: user,
+        alerts: [],
+    },
+    ready: function() {
+        var self = this;
+        this.$events.on('alert', function(msg) {
+            self.alerts.unshift(msg)
+        });
+        this.$events.on('removeAlert', function(msg) {
+            self.alerts.$remove(msg)
+        })
+    },
+    methods: {
+        logOut: function() {
+            var self = this;
+            firebase.auth().signOut().then(function() {
+                this.$dispatch('alert', { text: "Signed out successfully", style: { 'c-alerts__alert--success': true } })
+                self.user = null;
+            });
+        },
+        logIn: function() {
+            var provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth().signInWithRedirect(provider);
+        },
+        info: function() {
+            swal({
+                title: '<h4>About Crackbowl</h4>',
+                type: 'info',
+                html:'Crackbowl is a project made by <a href="http://www.github.com/ajusa" target="_blank">@ajusa</a>, with some help from Dark_P1ant. It is open source, ' +
+                 'so feel free to contribute if you like making <a href="http://www.github.com/ajusa/crackbowl" target="_blank">cancer.</a>',
+                showConfirmButton: true,
+                confirmButtonText: 'Close',
+                buttonsStyling: false,
+                confirmButtonClass: 'button'
+            })
+        },
+
+    },
+    events: {
+        'alert': function(msg) {
+            this.alerts.unshift(msg)
+        },
+        'removeAlert': function(msg) {
+            this.alerts.$remove(msg)
+        },
+    },
 });
