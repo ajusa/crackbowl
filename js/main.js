@@ -8,8 +8,7 @@ firebase.auth().getRedirectResult().then(function(result) {
     user = result.user;
     vm.$data.user = user;
     if (user) {
-        this.$dispatch('alert', { text: "Welcome " + user.displayName, style: { 'c-alerts__alert--success': true } });
-        //vm.$data.consoleBuffer.unshift();
+        vm.$dispatch('alert', { text: "Welcome " + user.displayName, style: { 'c-alerts__alert--success': true } });
         db.ref("users/" + user.uid + "/name").set(user.displayName)
     }
 })
@@ -179,20 +178,37 @@ var vm = new Vue({
         logOut: function() {
             var self = this;
             firebase.auth().signOut().then(function() {
-                this.$dispatch('alert', { text: "Signed out successfully", style: { 'c-alerts__alert--success': true } })
+                self.$dispatch('alert', { text: "Signed out successfully", style: { 'c-alerts__alert--success': true } })
                 self.user = null;
             });
         },
         logIn: function() {
+            swal({
+                title: '<h4>Sign In</h4>',
+                type: 'question',
+                html: '<button class="button" onclick="vm.google()">Sign in with Google</button> <br>' +
+                    '<button class="button" onclick="" disabled>Sign in with Facebook [WIP]</button>',
+                showConfirmButton: true,
+                confirmButtonText: 'Cancel',
+                buttonsStyling: false,
+                confirmButtonClass: 'button'
+            })
+        },
+        google: function() {
             var provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth().signInWithRedirect(provider);
+
+        },
+        facebook: function() {
+            var provider = new firebase.auth.FacebookAuthProvider();
             firebase.auth().signInWithRedirect(provider);
         },
         info: function() {
             swal({
                 title: '<h4>About Crackbowl</h4>',
                 type: 'info',
-                html:'Crackbowl is a project made by <a href="http://www.github.com/ajusa" target="_blank">@ajusa</a>, with some help from Dark_P1ant. It is open source, ' +
-                 'so feel free to contribute if you like making <a href="http://www.github.com/ajusa/crackbowl" target="_blank">cancer.</a>',
+                html: 'Crackbowl is a project made by <a href="http://www.github.com/ajusa" target="_blank">@ajusa</a>, with some help from Dark_P1ant. It is open source, ' +
+                    'so feel free to contribute if you like making <a href="http://www.github.com/ajusa/crackbowl" target="_blank">cancer.</a>',
                 showConfirmButton: true,
                 confirmButtonText: 'Close',
                 buttonsStyling: false,

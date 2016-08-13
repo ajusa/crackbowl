@@ -11,6 +11,7 @@
     <script src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
     <script src="lib/vue-focus.min.js"></script>
     <link rel="stylesheet" href="css/main.css">
+    <script src="https://use.fontawesome.com/28b27610da.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
     <script src="lib/hammer.min.js"></script>
     <script src="lib/vue-touch.min.js"></script>
@@ -35,28 +36,33 @@
             <nav class="c-nav c-nav--inline">
                 <span class="c-nav__item" href="/">Crackbowl</span>
                 <span class="c-nav__item" @click="info">About</span>
-                <span class="c-nav__item c-nav__item--right" v-if="!user" @click="logIn">Log In</span>
-                <span class="c-nav__item c-nav__item--right" v-if="user" @click="logOut">Log Out</span>
+                <span class="c-nav__item c-nav__item--right" v-if="!user" @click="logIn">Sign In</span>
+                <span class="c-nav__item c-nav__item--right" v-if="user" @click="logOut">Sign Out</span>
             </nav>
         </header>
         <div class="container">
+
             <questionview></questionview>
         </div>
     </div>
     <template id="questionView">
-        <div>
+        <div v-touch:swipeleft="nextQuestion" v-touch:swiperight="buzz" v-touch:press="toggleBuffer">
             <div class="mt4-ns mt3 mb0-ns mb0">
                 <input v-if="canBuzz" class="u-full-width" placeholder="Type" type="text" :disabled="!canBuzz" v-model="input" v-on:keyup.enter="submit" v-focus-model="focused">
             </div>
             <a class="button" @click="buzz">Buzz</a>
             <a class="button" @click="nextQuestion">Next</a>
-            <a class="button" v-if="!pause" @click="pauseBuffer">Pause</a>
-            <a class="button" v-if="pause" @click="playBuffer">Play</a>
+            <a class="button" v-if="!pause" @click="pauseBuffer">
+                <i class="fa fa-pause "></i>
+            </a>
+            <a class="button" v-if="pause" @click="playBuffer">
+                <i class="fa fa-play "></i>
+            </a>
             <div class="row c-alerts mt1">
                 <alert v-for="item in $root.alerts" class="animated" transition="bounce" :data="item"></alert>
             </div>
             <div class="row mt1">
-                <div class="eight columns br2 bg-white ph4-ns ph3 pv4-ns pv2" v-touch:swipeleft="nextQuestion" v-touch:swiperight="buzz" v-touch:press="toggleBuffer">
+                <div class="eight columns br2 bg-white ph4-ns ph3 pv4-ns pv2" >
                     <div v-show="timerBuffer > -1" id="timer" class="u-full-width">
                         <h3 class="tc mb4">{{timerBuffer/10}} </h3>
                     </div>
@@ -100,7 +106,7 @@
 </body>
 <script>
 VueTouch.config.swipe = {
-  direction: 'horizontal'
+    direction: 'horizontal'
 };
 Vue.use(VueTouch)
 </script>
