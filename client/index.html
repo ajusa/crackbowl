@@ -15,6 +15,9 @@
     <script src="lib/hammer.min.js"></script>
     <script src="lib/vue-touch.min.js"></script>
     <script src="lib/progressbar.min.js"></script>
+    <script src="lib/events.js"></script>
+    <script src="lib/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="css/sweetalert2.min.css">
     <script>
     firebase.initializeApp({
         apiKey: "AIzaSyAcG7nNgaJdArS9PDZwXMZmiTej7HQitGo",
@@ -31,19 +34,26 @@
         <header>
             <nav class="c-nav c-nav--inline">
                 <span class="c-nav__item" href="/">Crackbowl</span>
-                <span class="c-nav__item">About</span>
-                <span class="c-nav__item c-nav__item--right" @click="signIn">{{log}}</span>
+                <span class="c-nav__item" @click="info">About</span>
+                <span class="c-nav__item c-nav__item--right" v-if="!user" @click="logIn">Log In</span>
+                <span class="c-nav__item c-nav__item--right" v-if="user" @click="logOut">Log Out</span>
             </nav>
         </header>
-        <main class="container" >
+        <div class="container">
+            <questionview></questionview>
+        </div>
+    </div>
+    <template id="questionView">
+        <div>
             <div class="mt4-ns mt3 mb0-ns mb0">
                 <input v-if="canBuzz" class="u-full-width" placeholder="Type" type="text" :disabled="!canBuzz" v-model="input" v-on:keyup.enter="submit" v-focus-model="focused">
             </div>
             <a class="button" @click="buzz">Buzz</a>
             <a class="button" @click="nextQuestion">Next</a>
-            <a class="button" @click="toggleBuffer">{{{toggle}}} </a>
+            <a class="button" v-if="!pause" @click="pauseBuffer">Pause</a>
+            <a class="button" v-if="pause" @click="playBuffer">Play</a>
             <div class="row c-alerts mt1">
-                <alert v-for="item in consoleBuffer" class="animated" transition="bounce" :data="item"></alert>
+                <alert v-for="item in $root.alerts" class="animated" transition="bounce" :data="item"></alert>
             </div>
             <div class="row mt1">
                 <div class="eight columns br2 bg-white ph4-ns ph3 pv4-ns pv2" v-touch:swipeleft="nextQuestion" v-touch:swiperight="buzz" v-touch:press="toggleBuffer">
@@ -85,10 +95,13 @@
                     </select>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </template>
 </body>
 <script>
+VueTouch.config.swipe = {
+  direction: 'horizontal'
+};
 Vue.use(VueTouch)
 </script>
 <script src="js/util.js"></script>

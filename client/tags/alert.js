@@ -17,7 +17,7 @@ Vue.component('alert', {
         },
         remove: function() {
             clearTimeout(this.timeout)
-            this.$parent.consoleBuffer.$remove(this.data)
+            this.$dispatch('removeAlert',this.data)
         },
     },
 });
