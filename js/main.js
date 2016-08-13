@@ -186,8 +186,8 @@ var vm = new Vue({
             swal({
                 title: '<h4>Sign In</h4>',
                 type: 'question',
-                html: '<button class="button" onclick="vm.google()">Sign in with Google</button> <br>' +
-                    '<button class="button" onclick="" disabled>Sign in with Facebook [WIP]</button>',
+                html: '<a class="button" onclick="vm.google()">Sign in with Google</a> <br>' +
+                    '<a class="button" disabled>Sign in with Facebook [WIP]</a>',
                 showConfirmButton: true,
                 confirmButtonText: 'Cancel',
                 buttonsStyling: false,
