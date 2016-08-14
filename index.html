@@ -21,6 +21,7 @@
     <script src="lib/events.js"></script>
     <script src="lib/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="css/sweetalert2.min.css">
+    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
 </head>
 
 <body>
@@ -28,14 +29,15 @@
     <div id="wrapper" style="display:none">
         <header>
             <nav class="c-nav c-nav--inline">
-                <span class="c-nav__item" href="/">Home</span>
+                <a class="c-nav__item" href="/#/">Home</a>
                 <span class="c-nav__item" @click="info">About</span>
                 <span class="c-nav__item c-nav__item--right" v-if="!user" @click="logIn">Sign In</span>
                 <span class="c-nav__item c-nav__item--right" v-if="user" @click="logOut">Sign Out</span>
+                <a class="c-nav__item c-nav__item--right" v-if="user" href="/#/stats">Stats</a>
             </nav>
         </header>
         <div class="container">
-            <questionview></questionview>
+            <component :is="currentView"></component>
         </div>
     </div>
     <template id="questionView">
@@ -81,9 +83,48 @@
                         <option value="Current Events">Current Events</option>
                         <option value="Trash">Trash</option>
                     </select>
-                    <hr>
                 </div>
             </div>
+        </div>
+    </template>
+    <template id="statView">
+        <div class="mt4">
+            <div class="row">
+                <div class="four columns">
+                    <h5>Number of Questions</h5>
+                    <select class="u-full-width" v-model="number">
+                        <option value="100">100</option>
+                        <option value="200">200</option>
+                        <option value="500">500</option>
+                    </select>
+                </div>
+                <div class="four columns">
+                    <h5>Topics</h5>
+                    <select class="u-full-width" v-model="topic">
+                        <option value="All">All</option>
+                        <option value="Literature">Literature</option>
+                        <option value="History">History</option>
+                        <option value="Science">Science</option>
+                        <option value="Fine Arts">Fine Arts</option>
+                        <option value="Religion">Religion</option>
+                        <option value="Mythology">Mythology</option>
+                        <option value="Philosophy">Philosophy</option>
+                        <option value="Social Science">Social Science</option>
+                        <option value="Geography">Geography</option>
+                        <option value="Current Events">Current Events</option>
+                        <option value="Trash">Trash</option>
+                    </select>
+                </div>
+            </div>
+            <a class="button mt4" @click="submit">Submit</a>
+            <div v-if="show">
+                <hr>
+                <div v-for="item in questions">
+                    {{item.correct}}
+                </div>
+            </div>
+            <hr>
+            <p>Select the topics that you would like to run the analysis on.</p>
         </div>
     </template>
 </body>
@@ -94,13 +135,16 @@ firebase.initializeApp({
     databaseURL: "https://crackbowl-3dd7d.firebaseio.com",
     storageBucket: "crackbowl-3dd7d.appspot.com",
 });
+var db = firebase.database()
 VueTouch.config.swipe = {
     direction: 'horizontal'
 }
 Vue.use(VueTouch)
 </script>
-<script src="js/util.js"></script>
-<script src="tags/alert.js"></script>
-<script src="js/main.js"></script>
+<script src="lib/util.js"></script>
+<script src="views/alert.js"></script>
+<script src="views/question/root.js"></script>
+<script src="views/stats/root.js"></script>
+<script src="views/main.js"></script>
 
 </html>
