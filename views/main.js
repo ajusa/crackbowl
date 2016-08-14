@@ -11,17 +11,6 @@ firebase.auth().onAuthStateChanged(function(result) {
         db.ref("users/" + user.uid + "/name").set(user.displayName)
     }
 });
-/*firebase.auth().getRedirectResult().then(function(result) {
-    document.getElementById('loading').style.display = "none"
-    document.getElementById('wrapper').style.display = ""
-    document.getElementById('wrapper').className = "animated fadeIn"
-    user = result.user;
-    
-    if (user) {
-        vm.$dispatch('alert', { text: "Welcome " + user.displayName, style: { 'c-alerts__alert--success': true } });
-        db.ref("users/" + user.uid + "/name").set(user.displayName)
-    }
-})*/
 Vue.transition('bounce', {
     enterClass: 'bounceInLeft',
     leaveClass: 'bounceOutRight'

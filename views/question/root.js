@@ -31,7 +31,7 @@ Vue.component('questionview', {
             canBuzz: false,
             timerBuffer: -1,
             timesBuzzed: 1,
-            selected: { level: "HS", subject: "History" },
+            selected: { level: "HS", subject: "All" },
             score: 0,
         }
     },
@@ -88,8 +88,13 @@ Vue.component('questionview', {
         },
         nextQuestion: function() {
             var self = this;
-            db.ref("questions/" + self.selected.subject + "/count").on('value', function(int) {
-                db.ref("questions/" + self.selected.subject + "/list/" + getRandomInt(0, int.val() + 1)).on('value', function(snapshot) {
+            if (this.selected.subject == "All") {
+                subject = subjects[Math.floor(Math.random() * subjects.length)];
+            } else {
+                subject = this.selected.subject;
+            }
+            db.ref("questions/" + subject + "/count").on('value', function(int) {
+                db.ref("questions/" + subject + "/list/" + getRandomInt(0, int.val() + 1)).on('value', function(snapshot) {
                     self.currentQuestion = snapshot.val()
                 })
             });
