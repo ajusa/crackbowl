@@ -1,23 +1,4 @@
-var db = firebase.database()
-var user;
 var bar;
-firebase.auth().getRedirectResult().then(function(result) {
-    document.getElementById('loading').style.display = "none"
-    document.getElementById('wrapper').style.display = ""
-    document.getElementById('wrapper').className = "animated fadeIn"
-    user = result.user;
-    vm.$data.user = user;
-    if (user) {
-        vm.$dispatch('alert', { text: "Welcome " + user.displayName, style: { 'c-alerts__alert--success': true } });
-        db.ref("users/" + user.uid + "/name").set(user.displayName)
-    }
-})
-
-Vue.transition('bounce', {
-    enterClass: 'bounceInLeft',
-    leaveClass: 'bounceOutRight'
-})
-
 Vue.component('questionview', {
     template: "#questionView",
     mixins: [VueFocus.mixin],
@@ -50,7 +31,7 @@ Vue.component('questionview', {
             canBuzz: false,
             timerBuffer: -1,
             timesBuzzed: 1,
-            selected: { level: "HS", subject: "History" },
+            selected: { level: "HS", subject: "All" },
             score: 0,
         }
     },
@@ -107,8 +88,13 @@ Vue.component('questionview', {
         },
         nextQuestion: function() {
             var self = this;
-            db.ref("questions/" + self.selected.subject + "/count").on('value', function(int) {
-                db.ref("questions/" + self.selected.subject + "/list/" + getRandomInt(0, int.val() + 1)).on('value', function(snapshot) {
+            if (this.selected.subject == "All") {
+                subject = subjects[Math.floor(Math.random() * subjects.length)];
+            } else {
+                subject = this.selected.subject;
+            }
+            db.ref("questions/" + subject + "/count").on('value', function(int) {
+                db.ref("questions/" + subject + "/list/" + getRandomInt(0, int.val() + 1)).on('value', function(snapshot) {
                     self.currentQuestion = snapshot.val()
                 })
             });
@@ -156,77 +142,6 @@ Vue.component('questionview', {
             if (user)
                 db.ref("users/" + user.uid + "/questions").push(this.currentQuestion)
             this.$events.emit('alert', { text: "Incorrect! The answer was " + this.currentQuestion.answerText, style: { 'c-alerts__alert--error': true } });
-        },
-    },
-});
-var vm = new Vue({
-    el: 'body',
-    data: {
-        user: user,
-        alerts: [],
-    },
-    ready: function() {
-        var self = this;
-        this.$events.on('alert', function(msg) {
-            self.alerts.unshift(msg)
-        });
-        this.$events.on('removeAlert', function(msg) {
-            self.alerts.$remove(msg)
-        })
-    },
-    methods: {
-        logOut: function() {
-            var self = this;
-            firebase.auth().signOut().then(function() {
-                self.$dispatch('alert', { text: "Signed out successfully", style: { 'c-alerts__alert--success': true } })
-                self.user = null;
-            });
-        },
-        logIn: function() {
-            swal({
-                title: '<h4>Sign In</h4>',
-                type: 'question',
-                html: '<a class="button" onclick="vm.google()">Sign in with Google</a> <br>' +
-                    '<a class="button" disabled>Sign in with Facebook [WIP]</a>',
-                showConfirmButton: true,
-                confirmButtonText: 'Cancel',
-                buttonsStyling: false,
-                confirmButtonClass: 'button'
-            })
-        },
-        google: function() {
-            var provider = new firebase.auth.GoogleAuthProvider();
-            firebase.auth().signInWithRedirect(provider);
-
-        },
-        facebook: function() {
-            var provider = new firebase.auth.FacebookAuthProvider();
-            firebase.auth().signInWithRedirect(provider);
-        },
-        menu: function(){
-            nav.resize();
-            nav.toggle();
-        },
-        info: function() {
-            swal({
-                title: '<h4>About Crackbowl</h4>',
-                type: 'info',
-                html: 'Crackbowl is a project made by <a href="http://www.github.com/ajusa" target="_blank">@ajusa</a>, with some help from Dark_P1ant. It is open source, ' +
-                    'so feel free to contribute if you like making <a href="http://www.github.com/ajusa/crackbowl" target="_blank">cancer.</a>',
-                showConfirmButton: true,
-                confirmButtonText: 'Close',
-                buttonsStyling: false,
-                confirmButtonClass: 'button'
-            })
-        },
-
-    },
-    events: {
-        'alert': function(msg) {
-            this.alerts.unshift(msg)
-        },
-        'removeAlert': function(msg) {
-            this.alerts.$remove(msg)
         },
     },
 });
