@@ -203,10 +203,6 @@ var vm = new Vue({
             var provider = new firebase.auth.FacebookAuthProvider();
             firebase.auth().signInWithRedirect(provider);
         },
-        menu: function(){
-            nav.resize();
-            nav.toggle();
-        },
         info: function() {
             swal({
                 title: '<h4>About Crackbowl</h4>',

@@ -20,27 +20,15 @@
     <script src="lib/progressbar.min.js"></script>
     <script src="lib/events.js"></script>
     <script src="lib/sweetalert2.min.js"></script>
-    <script src="lib/responsive-nav.min.js"></script>
     <link rel="stylesheet" href="css/sweetalert2.min.css">
-    <script>
-    firebase.initializeApp({
-        apiKey: "AIzaSyAcG7nNgaJdArS9PDZwXMZmiTej7HQitGo",
-        authDomain: "crackbowl-3dd7d.firebaseapp.com",
-        databaseURL: "https://crackbowl-3dd7d.firebaseio.com",
-        storageBucket: "crackbowl-3dd7d.appspot.com",
-    });
-    </script>
 </head>
 
 <body>
     <img src="lib/loading-bars.svg" id="loading" style="position: absolute;top: 50%;left: 50%;width: 8rem;height: 8rem;margin-top: -4rem;margin-left: -4rem;">
     <div id="wrapper" style="display:none">
-        <header class="bg-black">
-            <div class="dn-ns">
-                <i class="fa fa-bars white dn pa3 fa-lg" @click="menu" aria-hidden="true"></i>
-            </div>
-            <nav class="c-nav c-nav--inline nav-collapse">
-                <span class="c-nav__item" href="/">Crackbowl</span>
+        <header>
+            <nav class="c-nav c-nav--inline">
+                <span class="c-nav__item" href="/">Home</span>
                 <span class="c-nav__item" @click="info">About</span>
                 <span class="c-nav__item c-nav__item--right" v-if="!user" @click="logIn">Sign In</span>
                 <span class="c-nav__item c-nav__item--right" v-if="user" @click="logOut">Sign Out</span>
@@ -94,22 +82,21 @@
                         <option value="Trash">Trash</option>
                     </select>
                     <hr>
-                    <h5>Sounds [WIP]</h5>
-                    <select>
-                        <option value="none">None</option>
-                        <option value="normal">Normal</option>
-                        <option value="mlg">MLG</option>
-                    </select>
                 </div>
             </div>
         </div>
     </template>
 </body>
 <script>
-var nav = responsiveNav(".nav-collapse", {label: "",});
+firebase.initializeApp({
+    apiKey: "AIzaSyAcG7nNgaJdArS9PDZwXMZmiTej7HQitGo",
+    authDomain: "crackbowl-3dd7d.firebaseapp.com",
+    databaseURL: "https://crackbowl-3dd7d.firebaseio.com",
+    storageBucket: "crackbowl-3dd7d.appspot.com",
+});
 VueTouch.config.swipe = {
     direction: 'horizontal'
-};
+}
 Vue.use(VueTouch)
 </script>
 <script src="js/util.js"></script>
