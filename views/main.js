@@ -3,7 +3,15 @@ firebase.auth().onAuthStateChanged(function(result) {
     user = result;
     vm.$data.user = user;
     if (user) {
-        vm.$dispatch('alert', { text: "Welcome " + user.displayName, style: { 'c-alerts__alert--success': true } });
+        swal({
+                title: '<h4>Welcome!</h4>',
+                type: 'success',
+                html: "Welcome back " + user.displayName,
+                showConfirmButton: true,
+                confirmButtonText: 'Okay',
+                buttonsStyling: false,
+                confirmButtonClass: 'button'
+            })
         db.ref("users/" + user.uid + "/name").set(user.displayName)
     }
 });
@@ -33,7 +41,15 @@ var vm = new Vue({
         logOut: function() {
             var self = this;
             firebase.auth().signOut().then(function() {
-                self.$dispatch('alert', { text: "Signed out successfully", style: { 'c-alerts__alert--success': true } })
+                swal({
+                title: '<h4>Signed Out!</h4>',
+                type: 'success',
+                html: "Signed out successfully",
+                showConfirmButton: true,
+                confirmButtonText: 'Okay',
+                buttonsStyling: false,
+                confirmButtonClass: 'button'
+            })
                 self.user = null;
             });
         },
