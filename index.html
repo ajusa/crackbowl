@@ -20,6 +20,8 @@
     <script src="lib/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="css/sweetalert2.min.css">
     <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <script src="lib/lodash.min.js"></script>
 </head>
 
 <body>
@@ -90,11 +92,7 @@
             <div class="row">
                 <div class="four columns">
                     <h5>Number of Questions</h5>
-                    <select class="u-full-width" v-model="number">
-                        <option value="100">100</option>
-                        <option value="200">200</option>
-                        <option value="500">500</option>
-                    </select>
+                    <input type="number" class="u-full-width" v-model="number" v-model="input" @keyup.enter="submit" min="1" max="500">
                 </div>
                 <div class="four columns">
                     <h5>Topics</h5>
@@ -115,10 +113,23 @@
                 </div>
             </div>
             <a class="button mt4" @click="submit">Submit</a>
-            <div v-if="show">
-                <hr>
-                <div v-for="item in questions">
-                    {{item.correct}}
+            <div v-show="show">
+                <div class="row">
+                    <hr>
+                    <div class="three tc columns">
+                        <h5>Percent Correct</h5>
+                        <div class="ct-chart ct-square" id="correct"></div>
+                    </div>
+                    <div class="eight tc columns">
+                        <h5>Percent of Subject</h5>
+                        <div class="ct-chart ct-octave" id="subject"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="eight tc columns">
+                        <h5>Percent of Subject Incorrect</h5>
+                        <div class="ct-chart ct-octave" id="subincorrect"></div>
+                    </div>
                 </div>
             </div>
             <hr>

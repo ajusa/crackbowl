@@ -1,6 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300,400);
 @import url('skeleton.css');
 @import url('alerts.min.css');
+@import url('chartist.css');
 @import url(https://cdn.jsdelivr.net/blazecss/2.11.0/components.buttons.min.css);
 @import url(https://cdn.jsdelivr.net/blazecss/2.11.0/components.alerts.min.css);
 @import url(https://cdn.jsdelivr.net/blazecss/2.11.0/components.navs.min.css);
