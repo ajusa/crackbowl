@@ -118,10 +118,10 @@ Vue.component('questionview', {
             if (check(this.input, this.currentQuestion.answers)) {
                 this.currentQuestion.correct = true;
                 this.$emit('correct', this.currentQuestion)
-                if (this.textBuffer.indexOf("*") == -1)
-                    this.score = this.score + 10;
-                else
+                if (this.textBuffer.indexOf("*") == -1 && this.currentQuestion.question.indexOf("*") > -1)
                     this.score = this.score + 15;
+                else
+                    this.score = this.score + 10;
             } else {
                 this.currentQuestion.correct = false;
                 this.$emit('incorrect', this.currentQuestion)
