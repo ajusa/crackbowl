@@ -1,9 +1,6 @@
 var user;
 firebase.auth().getRedirectResult()
 firebase.auth().onAuthStateChanged(function(result) {
-    document.getElementById('loading').style.display = "none"
-    document.getElementById('wrapper').style.display = ""
-    document.getElementById('wrapper').className = "animated fadeIn"
     user = result;
     vm.$data.user = user;
     if (user) {
