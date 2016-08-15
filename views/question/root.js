@@ -46,6 +46,7 @@ Vue.component('questionview', {
                     self.submit()
                     self.timerBuffer = -1;
                     self.timesBuzzed++;
+                    bar.set(0);
                 }
             }, 100)
         },
@@ -57,6 +58,7 @@ Vue.component('questionview', {
                     self.n++;
                 } else if (self.n == (self.currentQuestion.question.length || 0)) {
                     self.timerBuffer = 30;
+                    bar.set(0)
                     bar.animate(1);
                     self.n++
                 }
@@ -82,6 +84,7 @@ Vue.component('questionview', {
                 this.focused = true;
                 this.pause = true;
                 this.timerBuffer = 70;
+                bar.set(0)
                 bar.animate(1);
                 this.timesBuzzed++;
             }
