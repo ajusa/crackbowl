@@ -1,5 +1,4 @@
 var user;
-firebase.auth().getRedirectResult()
 firebase.auth().onAuthStateChanged(function(result) {
     user = result;
     vm.$data.user = user;
