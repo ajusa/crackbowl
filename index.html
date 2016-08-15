@@ -89,10 +89,10 @@
     </template>
     <template id="statView">
         <div class="mt4">
-            <div class="row">
+            <div class="row bg-white pa3 pb4 br2">
                 <div class="four columns">
                     <h5>Number of Questions</h5>
-                    <input type="number" class="u-full-width" v-model="number" v-model="input" @keyup.enter="submit" min="1" max="500">
+                    <input type="number" class="u-full-width mb2" v-model="number" v-model="input" @keyup.enter="submit" min="1" max="500">
                 </div>
                 <div class="four columns">
                     <h5>Topics</h5>
@@ -116,21 +116,21 @@
             <div v-show="show">
                 <div class="row">
                     <hr>
-                    <div class="three tc columns">
+                    <div class="three tc columns mb2">
                         <h5>Percent Correct</h5>
                         <div class="ct-chart ct-square" id="correct"></div>
                     </div>
-                    <div class="eight tc columns">
+                    <div class="eight tc columns mb2">
                         <h5>Percent of Subject</h5>
                         <div class="ct-chart ct-octave" id="subject"></div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="six tc columns">
+                    <div class="six tc columns mb2">
                         <h5>Percent of Subject Incorrect</h5>
                         <div class="ct-chart ct-octave" id="subincorrect"></div>
                     </div>
-                    <div class="six tc columns">
+                    <div class="six tc columns mb2">
                         <h5>Percent of Subject Correct</h5>
                         <div class="ct-chart ct-octave" id="subcorrect"></div>
                     </div>
