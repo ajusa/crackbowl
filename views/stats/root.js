@@ -9,6 +9,7 @@ Vue.component('statview', {
             topic: "All",
             show: false,
             questions: [],
+            mostMissed: [],
         }
     },
     methods: {
@@ -46,7 +47,7 @@ Vue.component('statview', {
                 lbl.push(key)
                 srs.push(100 * (value.length / self.questions.length))
             });
-            new Chartist.Bar('#subject', {
+            new Chartist.Pie('#subject', {
                 series: srs,
                 labels: lbl,
             }, {
@@ -64,7 +65,7 @@ Vue.component('statview', {
                 }
 
             });
-            new Chartist.Bar('#subincorrect', {
+            new Chartist.Pie('#subincorrect', {
                 series: srs,
                 labels: lbl,
             }, {
@@ -82,11 +83,22 @@ Vue.component('statview', {
                 }
 
             });
-            new Chartist.Bar('#subcorrect', {
+            new Chartist.Pie('#subcorrect', {
                 series: srs,
                 labels: lbl,
             }, {
                 distributeSeries: true
+            });
+            badAnswers = [];
+            _.forOwn(arr, function(value, key) {
+                value2 = _.filter(value, function(n) {
+                    return !n.correct;
+                });
+                if (value2.length > 0) {
+                    _.forEach(value2, function(val){badAnswers.push(val.answers)})
+                    
+                }
+                console.log(badAnswers)
             });
             self.show = true;
         },
