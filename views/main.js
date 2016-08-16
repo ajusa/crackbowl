@@ -25,7 +25,7 @@ var vm = new Vue({
     data: {
         user: firebase.auth().currentUser,
         alerts: [],
-        currentView: "",
+        currentView: "questionview",
     },
     ready: function() {
         var self = this;
@@ -97,12 +97,3 @@ var vm = new Vue({
         },
     },
 });
-//Routing
-page.base('/#');
-page('/', function() {
-    vm.$data.currentView = "questionview";
-})
-page('/stats', function() {
-    vm.$data.currentView = "statview";
-})
-page.start()

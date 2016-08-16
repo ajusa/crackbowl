@@ -20,10 +20,9 @@ Vue.component('statview', {
     methods: {
         runStats: function(data, sub) {
             var self = this;
-            qs = this.questions = _(data.val()).values().map(function(o) {
+            qs = this.questions = _(data.val()).values().map(function(o) { 
                 o[sub] = o[sub] || "None"
-                return o
-            }).value()
+                return o }).value()
             ql = qs.length; //total questions
             highLevel = _.countBy(qs, sub)
             c = _.compact(_.map(qs, 'correct')).length //number correct
