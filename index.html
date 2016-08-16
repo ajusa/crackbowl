@@ -90,51 +90,55 @@
     </template>
     <template id="statView">
         <div class="mt4">
-            <div class="row bg-white pa3 pb4 br2">
-                <div class="four columns">
-                    <h5>Number of Questions</h5>
-                    <input type="number" class="u-full-width mb2" v-model="number" v-model="input" @keyup.enter="submit" min="1" max="500">
+            <div class="bg-white pa3 pb3 br2">
+                <div class="row">
+                    <div class="four columns">
+                        <h5>Number of Questions</h5>
+                        <input type="number" class="u-full-width mb2" v-model="number" v-model="input" @keyup.enter="submit" min="1" max="500">
+                    </div>
+                    <div class="four columns">
+                        <h5>Topics</h5>
+                        <select class="u-full-width" v-model="topic">
+                            <option value="All">All</option>
+                            <option value="Literature">Literature</option>
+                            <option value="History">History</option>
+                            <option value="Science">Science</option>
+                            <option value="Fine Arts">Fine Arts</option>
+                            <option value="Religion">Religion</option>
+                            <option value="Mythology">Mythology</option>
+                            <option value="Philosophy">Philosophy</option>
+                            <option value="Social Science">Social Science</option>
+                            <option value="Geography">Geography</option>
+                            <option value="Current Events">Current Events</option>
+                            <option value="Trash">Trash</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="four columns">
-                    <h5>Topics</h5>
-                    <select class="u-full-width" v-model="topic">
-                        <option value="All">All</option>
-                        <option value="Literature">Literature</option>
-                        <option value="History">History</option>
-                        <option value="Science">Science</option>
-                        <option value="Fine Arts">Fine Arts</option>
-                        <option value="Religion">Religion</option>
-                        <option value="Mythology">Mythology</option>
-                        <option value="Philosophy">Philosophy</option>
-                        <option value="Social Science">Social Science</option>
-                        <option value="Geography">Geography</option>
-                        <option value="Current Events">Current Events</option>
-                        <option value="Trash">Trash</option>
-                    </select>
-                </div>
+                <a class="button mt3 w-auto-ns w-100" @click="submit">Submit</a>
             </div>
-            <a class="button mt4" @click="submit">Submit</a>
             <div v-show="show">
                 <hr>
-                <div class="row">
-                    <div class="six tc columns mb2">
+                <div class="row mb5">
+                    <div class="six tc columns">
                         <h5>Percent Correct</h5>
-                        <chartist class="ct-chart ct-octave ct-nodata" ratio="ct-major-second" type="Pie" :data="charts.correct"></chartist>
+                        <chartist class="ct-chart" ratio="ct-major-second" type="Pie" :data="charts.correct"></chartist>
                     </div>
-                    <div class="six tc columns mb2">
+                    <div class="six tc columns">
                         <h5>Percent of Subject</h5>
-                        <chartist class="ct-chart ct-octave ct-nodata" ratio="ct-major-second" type="Pie" :data="charts.subjects"></chartist>
+                        <chartist class="ct-chart" ratio="ct-major-second" type="Pie" :data="charts.subjects"></chartist>
                     </div>
                 </div>
-                <div class="row" v-for="arr in charts.eachSubject">
-                    <div class="six tc columns mb2" v-for="data in arr">
+                <div class="row mb5" v-for="arr in charts.eachSubject">
+                    <div class="six tc columns" v-for="data in arr">
                         <h5>{{data.title}}</h5>
-                        <chartist class="ct-chart ct-octave ct-nodata" ratio="ct-major-second" type="Pie" :data="data"></chartist>
+                        <chartist class="ct-chart" ratio="ct-major-second" type="Pie" :data="data"></chartist>
+                        <p>Correct: {{data.series[0]}}</p>
+                        <p>Incorrect: {{data.series[1]}}</p>
                     </div>
                 </div>
             </div>
             <hr>
-            <p>Select the topics that you would like to run the analysis on.</p>
+            <p>Select the topics that you would like to run the analysis on. "None" means that the question hasn't been classified yet.</p>
         </div>
     </template>
 </body>

@@ -18,79 +18,25 @@ Vue.component('statview', {
         }
     },
     methods: {
-        runStats: function(snapshot, sub) {
+        runStats: function(data, sub) {
             var self = this;
-            qs = this.questions = _.map(_.values(snapshot.val()), function(o) {
-                    if (o[sub] == "") {
-                        o[sub] = "None"
-                    }
-                    return o;
-                }) //questions array
-
+            qs = this.questions = _(data.val()).values().map(function(o) {
+                o[sub] = o[sub] || "None"
+                return o
+            }).value()
             ql = qs.length; //total questions
             highLevel = _.countBy(qs, sub)
-                c = _.compact(_.map(qs, 'correct')).length //number correct
+            c = _.compact(_.map(qs, 'correct')).length //number correct
             this.charts.correct = {
                 series: [c, ql - c],
                 labels: ['Correct', 'Incorrect'],
             }
-            this.charts.subjects = {
-                series: _.values(highLevel),
-                labels: _.keys(highLevel),
-            }
+            this.charts.subjects = { series: _.values(highLevel), labels: _.keys(highLevel) }
             this.charts.eachSubject = [];
             _.forOwn(_.countBy(_.reject(qs, 'correct'), sub), function(value, key) {
                 self.charts.eachSubject.push({ title: key, labels: ["Correct", "Incorrect"], series: [highLevel[key] - value, value] })
             })
-            self.charts.eachSubject = _.chunk(self.charts.eachSubject, 2);
-            /* lbl = []
-            }
-            srs = [];
-            _.forOwn(arr, function(value, key) {
-                value2 = _.filter(value, function(n) {
-                    return !n.correct;
-                });
-                if (value2.length > 0) {
-                    lbl.push(key)
-                    srs.push(100 * (value2.length / self.questions.length))
-                }
-
-            });
-*/
-            new Chartist.Pie('#subincorrect', {
-                series: _.values(_.countBy(_.reject(qs, 'correct'), sub)),
-                labels: _.keys(_.countBy(_.reject(qs, 'correct'), sub)),
-            });
-            /*
-                        lbl = []
-                        srs = [];
-                        _.forOwn(arr, function(value, key) {
-                            value2 = _.filter(value, function(n) {
-                                return n.correct;
-                            });
-                            if (value2.length > 0) {
-                                lbl.push(key)
-                                srs.push(100 * (value2.length / self.questions.length))
-                            }
-
-                        });
-                        new Chartist.Pie('#subcorrect', {
-                            series: srs,
-                            labels: lbl,
-                        }, {
-                            distributeSeries: true
-                        });
-                        badAnswers = [];
-                        _.forOwn(arr, function(value, key) {
-                            value2 = _.filter(value, function(n) {
-                                return !n.correct;
-                            });
-                            if (value2.length > 0) {
-                                _.forEach(value2, function(val) { badAnswers.push(val.answers) })
-
-                            }
-                            console.log(badAnswers)
-                        });*/
+            self.charts.eachSubject = _.chunk(self.charts.eachSubject, 2); //for grids
             this.show = true;
         },
         submit: function() {
