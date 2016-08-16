@@ -22,6 +22,7 @@
     <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
     <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
     <script src="lib/lodash.min.js"></script>
+    <script src="lib/chartist-vue.js"></script>
 </head>
 
 <body>
@@ -114,28 +115,23 @@
             </div>
             <a class="button mt4" @click="submit">Submit</a>
             <div v-show="show">
+                <hr>
                 <div class="row">
-                    <hr>
-                    <div class="three tc columns mb2">
+                    <div class="six tc columns mb2">
                         <h5>Percent Correct</h5>
-                        <div class="ct-chart ct-square" id="correct"></div>
+                        <chartist class="ct-chart ct-octave ct-nodata" ratio="ct-major-second" type="Pie" :data="charts.correct"></chartist>
                     </div>
-                    <div class="eight tc columns mb2">
+                    <div class="six tc columns mb2">
                         <h5>Percent of Subject</h5>
-                        <div class="ct-chart ct-octave" id="subject"></div>
+                        <chartist class="ct-chart ct-octave ct-nodata" ratio="ct-major-second" type="Pie" :data="charts.subjects"></chartist>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="six tc columns mb2">
-                        <h5>Percent of Subject Incorrect</h5>
-                        <div class="ct-chart ct-octave" id="subincorrect"></div>
-                    </div>
-                    <div class="six tc columns mb2">
-                        <h5>Percent of Subject Correct</h5>
-                        <div class="ct-chart ct-octave" id="subcorrect"></div>
+                <div class="row" v-for="arr in charts.eachSubject">
+                    <div class="six tc columns mb2" v-for="data in arr">
+                        <h5>{{data.title}}</h5>
+                        <chartist class="ct-chart ct-octave ct-nodata" ratio="ct-major-second" type="Pie" :data="data"></chartist>
                     </div>
                 </div>
-
             </div>
             <hr>
             <p>Select the topics that you would like to run the analysis on.</p>
