@@ -10,50 +10,41 @@ Vue.component('statview', {
             show: false,
             questions: [],
             mostMissed: [],
+            charts: {
+                correct: null,
+                subjects: null,
+                eachSubject: null,
+            },
         }
     },
     methods: {
         runStats: function(snapshot, sub) {
             var self = this;
-            for (var key in snapshot.val()) {
-                if (!snapshot.val().hasOwnProperty(key)) continue;
-                self.questions.push(snapshot.val()[key])
-            }
-            correct = self.questions.filter(function(obj) {
-                return obj.correct
-            }).length * 100 / self.questions.length;
-            new Chartist.Pie('#correct', {
-                series: [correct, 100 - correct],
-                labels: ['Correct', 'Incorrect'],
-            });
-            var arr = []
-            if (sub) {
-                _.forOwn(self.questions, function(value, key) {
-                    if (value.subject == "") {
-                        value.subject = "None"
+            qs = this.questions = _.map(_.values(snapshot.val()), function(o) {
+                    if (o[sub] == "") {
+                        o[sub] = "None"
                     }
-                    arr[value.subject] = arr[value.subject] || [];
-                    arr[value.subject].push(value)
-                });
-            } else {
-                _.forOwn(self.questions, function(value, key) {
-                    arr[value.topic] = arr[value.topic] || [];
-                    arr[value.topic].push(value)
-                });
+                    return o;
+                }) //questions array
+
+            ql = qs.length; //total questions
+            highLevel = _.countBy(qs, sub)
+                c = _.compact(_.map(qs, 'correct')).length //number correct
+            this.charts.correct = {
+                series: [c, ql - c],
+                labels: ['Correct', 'Incorrect'],
             }
-            lbl = []
-            srs = [];
-            _.forOwn(arr, function(value, key) {
-                lbl.push(key)
-                srs.push(100 * (value.length / self.questions.length))
-            });
-            new Chartist.Pie('#subject', {
-                series: srs,
-                labels: lbl,
-            }, {
-                distributeSeries: true
-            });
-            lbl = []
+            this.charts.subjects = {
+                series: _.values(highLevel),
+                labels: _.keys(highLevel),
+            }
+            this.charts.eachSubject = [];
+            _.forOwn(_.countBy(_.reject(qs, 'correct'), sub), function(value, key) {
+                self.charts.eachSubject.push({ title: key, labels: ["Correct", "Incorrect"], series: [highLevel[key] - value, value] })
+            })
+            self.charts.eachSubject = _.chunk(self.charts.eachSubject, 2);
+            /* lbl = []
+            }
             srs = [];
             _.forOwn(arr, function(value, key) {
                 value2 = _.filter(value, function(n) {
@@ -65,42 +56,42 @@ Vue.component('statview', {
                 }
 
             });
+*/
             new Chartist.Pie('#subincorrect', {
-                series: srs,
-                labels: lbl,
-            }, {
-                distributeSeries: true
+                series: _.values(_.countBy(_.reject(qs, 'correct'), sub)),
+                labels: _.keys(_.countBy(_.reject(qs, 'correct'), sub)),
             });
-            lbl = []
-            srs = [];
-            _.forOwn(arr, function(value, key) {
-                value2 = _.filter(value, function(n) {
-                    return n.correct;
-                });
-                if (value2.length > 0) {
-                    lbl.push(key)
-                    srs.push(100 * (value2.length / self.questions.length))
-                }
+            /*
+                        lbl = []
+                        srs = [];
+                        _.forOwn(arr, function(value, key) {
+                            value2 = _.filter(value, function(n) {
+                                return n.correct;
+                            });
+                            if (value2.length > 0) {
+                                lbl.push(key)
+                                srs.push(100 * (value2.length / self.questions.length))
+                            }
 
-            });
-            new Chartist.Pie('#subcorrect', {
-                series: srs,
-                labels: lbl,
-            }, {
-                distributeSeries: true
-            });
-            badAnswers = [];
-            _.forOwn(arr, function(value, key) {
-                value2 = _.filter(value, function(n) {
-                    return !n.correct;
-                });
-                if (value2.length > 0) {
-                    _.forEach(value2, function(val){badAnswers.push(val.answers)})
-                    
-                }
-                console.log(badAnswers)
-            });
-            self.show = true;
+                        });
+                        new Chartist.Pie('#subcorrect', {
+                            series: srs,
+                            labels: lbl,
+                        }, {
+                            distributeSeries: true
+                        });
+                        badAnswers = [];
+                        _.forOwn(arr, function(value, key) {
+                            value2 = _.filter(value, function(n) {
+                                return !n.correct;
+                            });
+                            if (value2.length > 0) {
+                                _.forEach(value2, function(val) { badAnswers.push(val.answers) })
+
+                            }
+                            console.log(badAnswers)
+                        });*/
+            this.show = true;
         },
         submit: function() {
             var self = this;
@@ -118,11 +109,11 @@ Vue.component('statview', {
             }
             if (this.topic != "All") {
                 db.ref("users/" + user.uid + "/questions").orderByChild("topic").equalTo(self.topic).limitToLast(Number(this.number)).once('value', function(snapshot) {
-                    self.runStats(snapshot, true)
+                    self.runStats(snapshot, 'subject')
                 })
             } else {
                 db.ref("users/" + user.uid + "/questions").limitToLast(Number(this.number)).once('value', function(snapshot) {
-                    self.runStats(snapshot, false)
+                    self.runStats(snapshot, 'topic')
                 });
             }
         },
