@@ -19,7 +19,6 @@ Vue.transition('bounce', {
     enterClass: 'bounceInLeft',
     leaveClass: 'bounceOutRight'
 })
-
 var vm = new Vue({
     el: 'body',
     data: {

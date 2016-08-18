@@ -19,7 +19,7 @@
     <script src="lib/events.js"></script>
     <script src="lib/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="css/sweetalert2.min.css">
-    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <script src="lib/chartist.min.js"></script>
     <script src="lib/lodash.min.js"></script>
     <script src="lib/chartist-vue.js"></script>
 </head>
@@ -27,12 +27,12 @@
 <body>
     <div id="wrapper">
         <header>
-            <nav class="c-nav c-nav--inline">
-                <a class="c-nav__item" @click="currentView = 'questionview'">Home</a>
-                <span class=" c-nav__item " @click="info">About</span>
-                <span class="c-nav__item c-nav__item--right" v-if="!user " @click="logIn">Sign In</span>
-                <span class="c-nav__item c-nav__item--right" v-if="user " @click="logOut">Sign Out</span>
-                <a class="c-nav__item c-nav__item--right" v-if="user" @click="currentView='statview'">Stats</a>
+            <nav class="bg-black white">
+                <span class="dib ph4 pv4 hover-bg-gray" @click="currentView = 'questionview'">Home</span>
+                <span class="dib ph4 pv4 hover-bg-gray" @click="info">About</span>
+                <span class="dib ph4 fr pv4 hover-bg-gray" v-if="!user " @click="logIn">Sign In</span>
+                <span class="dib ph4 fr pv4 hover-bg-gray" v-if="user " @click="logOut">Sign Out</span>
+                <span class="dib ph4 fr pv4 hover-bg-gray" v-if="user" @click="currentView='statview'">Stats</span>
             </nav>
         </header>
         <div class="container">
@@ -41,14 +41,16 @@
     </div>
     <template id="questionView">
         <div v-touch:swipeleft="nextQuestion" v-touch:swiperight="buzz" v-touch:press="toggleBuffer">
-            <div class="mt4-ns mt3 mb3-ns mb3">
+            <div class="mt3 mb3">
                 <input v-if="canBuzz" class="u-full-width" placeholder="Type" type="text" v-model="input" @keyup.enter="submit" v-focus-model="focused">
             </div>
-            <a class="button" @click="buzz">Buzz</a>
-            <a class="button" @click="nextQuestion">Next</a>
-            <a class="button" v-if="!pause" @click="pauseBuffer"><i class="fa fa-pause"></i></a>
-            <a class="button" v-if="pause" @click="playBuffer"><i class="fa fa-play"></i></a>
-            <div class="row c-alerts mt1">
+            <div>
+                <a class="button" @click="buzz">Buzz</a>
+                <a class="button" @click="nextQuestion">Next</a>
+                <a class="button" v-if="!pause" @click="pauseBuffer"><i class="fa fa-pause"></i></a>
+                <a class="button" v-if="pause" @click="playBuffer"><i class="fa fa-play"></i></a>
+            </div>
+            <div class="row">
                 <alert v-for="item in $root.alerts" class="animated" transition="bounce" :data="item"></alert>
             </div>
             <div class="row mt1">
@@ -90,7 +92,7 @@
     <template id="statView">
         <div class="mt4">
             <div class="bg-white pa3 pb3 br2">
-                <div class="row">
+                <div class="row mb3">
                     <div class="four columns">
                         <h5>Number of Questions</h5>
                         <input type="number" class="u-full-width mb2" v-model="number" v-model="input" @keyup.enter="submit" min="1" max="500">
@@ -113,7 +115,7 @@
                         </select>
                     </div>
                 </div>
-                <a class="button mt3 w-auto-ns w-100" @click="submit">Submit</a>
+                <a class="button" @click="submit">Submit</a>
             </div>
             <div v-show="show">
                 <hr>
@@ -131,8 +133,6 @@
                     <div class="six tc columns" v-for="data in arr">
                         <h5>{{data.title}}</h5>
                         <chartist class="ct-chart" ratio="ct-major-second" type="Pie" :data="data"></chartist>
-                        <p>Correct: {{data.series[0]}}</p>
-                        <p>Incorrect: {{data.series[1]}}</p>
                     </div>
                 </div>
             </div>

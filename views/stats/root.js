@@ -20,20 +20,21 @@ Vue.component('statview', {
     methods: {
         runStats: function(data, sub) {
             var self = this;
-            qs = this.questions = _(data.val()).values().map(function(o) { 
+            qs = this.questions = _(data.val()).values().map(function(o) {
                 o[sub] = o[sub] || "None"
-                return o }).value()
+                return o
+            }).value()
             ql = qs.length; //total questions
             highLevel = _.countBy(qs, sub)
             c = _.compact(_.map(qs, 'correct')).length //number correct
             this.charts.correct = {
                 series: [c, ql - c],
-                labels: ['Correct', 'Incorrect'],
+                labels: ['Correct: ' + c, 'Incorrect: ' + (ql - c)],
             }
             this.charts.subjects = { series: _.values(highLevel), labels: _.keys(highLevel) }
             this.charts.eachSubject = [];
             _.forOwn(_.countBy(_.reject(qs, 'correct'), sub), function(value, key) {
-                self.charts.eachSubject.push({ title: key, labels: ["Correct", "Incorrect"], series: [highLevel[key] - value, value] })
+                self.charts.eachSubject.push({ title: key, labels: ["Correct: " + (highLevel[key] - value), "Incorrect: " + value], series: [highLevel[key] - value, value] })
             })
             self.charts.eachSubject = _.chunk(self.charts.eachSubject, 2); //for grids
             this.show = true;

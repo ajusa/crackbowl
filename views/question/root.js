@@ -139,12 +139,12 @@ Vue.component('questionview', {
         'correct': function(msg) {
             if (user)
                 db.ref("users/" + user.uid + "/questions").push(this.currentQuestion)
-            this.$events.emit('alert', { text: "Correct! The answer was " + this.currentQuestion.answerText, style: { 'c-alerts__alert--success': true } });
+            this.$events.emit('alert', { text: "Correct! The answer was " + this.currentQuestion.answerText, style: { 'bg-dark-green': true } });
         },
         'incorrect': function(msg) {
             if (user)
                 db.ref("users/" + user.uid + "/questions").push(this.currentQuestion)
-            this.$events.emit('alert', { text: "Incorrect! The answer was " + this.currentQuestion.answerText, style: { 'c-alerts__alert--error': true } });
+            this.$events.emit('alert', { text: "Incorrect! The answer was " + this.currentQuestion.answerText, style: { 'bg-red': true } });
         },
     },
 });
