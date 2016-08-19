@@ -27,12 +27,12 @@
 <body>
     <div id="wrapper">
         <header>
-            <nav class="bg-black white">
-                <span class="dib ph4 pv4 hover-bg-gray" @click="currentView = 'questionview'">Home</span>
-                <span class="dib ph4 pv4 hover-bg-gray" @click="info">About</span>
-                <span class="dib ph4 fr pv4 hover-bg-gray" v-if="!user " @click="logIn">Sign In</span>
-                <span class="dib ph4 fr pv4 hover-bg-gray" v-if="user " @click="logOut">Sign Out</span>
-                <span class="dib ph4 fr pv4 hover-bg-gray" v-if="user" @click="currentView='statview'">Stats</span>
+            <nav class="bg-near-black white dt w-100">
+                <span class="dib ph4-ns ph3 pv3 pv4-ns hover-bg-gray fl" @click="currentView = 'questionview'">Home</span>
+                <span class="dib ph4-ns ph3 pv3 pv4-ns hover-bg-gray fl" @click="info">About</span>
+                <span class="dib ph4-ns ph3 pv3 pv4-ns hover-bg-gray fl" v-if="user" @click="currentView='statview'">Stats</span>
+                <span class="dib ph4-ns ph3 pv3 pv4-ns hover-bg-gray fr" v-if="!user " @click="logIn">Sign In</span>
+                <span class="dib ph4-ns ph3 pv3 pv4-ns hover-bg-gray fr" v-if="user" @click="logOut">Sign Out</span>
             </nav>
         </header>
         <div class="container">
