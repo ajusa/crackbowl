@@ -22,7 +22,7 @@ Vue.component('questionview', {
     },
     data: function() {
         return {
-            currentQuestion: { exists: true, },
+            currentQuestion: { exists: true, heading:"" },
             input: "",
             textBuffer: "Welcome to crackbowl! Hit the next button (or n) to start a question, hit buzz (or space) to buzz, and hit pause / play(p) to toggle the question being read. Questions are read here ",
             pause: false,
@@ -139,12 +139,12 @@ Vue.component('questionview', {
         'correct': function(msg) {
             if (user)
                 db.ref("users/" + user.uid + "/questions").push(this.currentQuestion)
-            this.$events.emit('alert', { text: "Correct! The answer was " + this.currentQuestion.answerText, style: { 'c-alerts__alert--success': true } });
+            this.$events.emit('alert', { text: "Correct! The answer was " + this.currentQuestion.answerText, style: { 'bg-dark-green': true } });
         },
         'incorrect': function(msg) {
             if (user)
                 db.ref("users/" + user.uid + "/questions").push(this.currentQuestion)
-            this.$events.emit('alert', { text: "Incorrect! The answer was " + this.currentQuestion.answerText, style: { 'c-alerts__alert--error': true } });
+            this.$events.emit('alert', { text: "Incorrect! The answer was " + this.currentQuestion.answerText, style: { 'bg-red': true } });
         },
     },
 });

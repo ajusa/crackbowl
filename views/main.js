@@ -4,7 +4,7 @@ firebase.auth().onAuthStateChanged(function(result) {
     vm.$data.user = user;
     if (user) {
         swal({
-                title: '<h4>Welcome!</h4>',
+                title: 'Welcome!',
                 type: 'success',
                 html: "Welcome back " + user.displayName,
                 showConfirmButton: true,
@@ -19,13 +19,12 @@ Vue.transition('bounce', {
     enterClass: 'bounceInLeft',
     leaveClass: 'bounceOutRight'
 })
-
 var vm = new Vue({
     el: 'body',
     data: {
         user: firebase.auth().currentUser,
         alerts: [],
-        currentView: "",
+        currentView: "questionview",
     },
     ready: function() {
         var self = this;
@@ -42,7 +41,7 @@ var vm = new Vue({
             var self = this;
             firebase.auth().signOut().then(function() {
                 swal({
-                title: '<h4>Signed Out!</h4>',
+                title: 'Signed Out!',
                 type: 'success',
                 html: "Signed out successfully",
                 showConfirmButton: true,
@@ -55,9 +54,9 @@ var vm = new Vue({
         },
         logIn: function() {
             swal({
-                title: '<h4>Sign In</h4>',
+                title: 'Sign In',
                 type: 'question',
-                html: '<a class="button" onclick="vm.google()">Sign in with Google</a> <br>' +
+                html: '<a class="button mb2" onclick="vm.google()">Sign in with Google</a>' +
                     '<a class="button" disabled>Sign in with Facebook [WIP]</a>',
                 showConfirmButton: true,
                 confirmButtonText: 'Cancel',
@@ -76,7 +75,7 @@ var vm = new Vue({
         },
         info: function() {
             swal({
-                title: '<h4>About Crackbowl</h4>',
+                title: 'About Crackbowl',
                 type: 'info',
                 html: 'Crackbowl is a project made by <a href="http://www.github.com/ajusa" target="_blank">@ajusa</a>, with some help from Dark_P1ant. It is open source, ' +
                     'so feel free to contribute if you like making <a href="http://www.github.com/ajusa/crackbowl" target="_blank">cancer.</a>',
@@ -97,12 +96,3 @@ var vm = new Vue({
         },
     },
 });
-//Routing
-page.base('/#');
-page('/', function() {
-    vm.$data.currentView = "questionview";
-})
-page('/stats', function() {
-    vm.$data.currentView = "statview";
-})
-page.start()
