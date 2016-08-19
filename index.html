@@ -26,13 +26,13 @@
 
 <body>
     <div id="wrapper">
-        <header>
-            <nav class="bg-near-black white dt w-100">
-                <span class="dib ph4-ns ph3 pv3 pv4-ns hover-bg-gray fl" @click="currentView = 'questionview'">Home</span>
-                <span class="dib ph4-ns ph3 pv3 pv4-ns hover-bg-gray fl" @click="info">About</span>
-                <span class="dib ph4-ns ph3 pv3 pv4-ns hover-bg-gray fl" v-if="user" @click="currentView='statview'">Stats</span>
-                <span class="dib ph4-ns ph3 pv3 pv4-ns hover-bg-gray fr" v-if="!user " @click="logIn">Sign In</span>
-                <span class="dib ph4-ns ph3 pv3 pv4-ns hover-bg-gray fr" v-if="user" @click="logOut">Sign Out</span>
+        <header class="black-70 tracked-l dt w-100 f5">
+            <nav class="container tc tl-ns bb b--black-10">
+                <span class="dib ph4-ns ph2 pv3 pv3-ns dim" @click="currentView = 'questionview'">Home</span>
+                <span class="dib ph4-ns ph2 pv3 pv3-ns dim" @click="info">About</span>
+                <span class="dib ph4-ns ph2 pv3 pv3-ns dim" v-if="user" @click="currentView='statview'">Stats</span>
+                <span class="dib ph4-ns ph2 pv3 pv3-ns dim" v-if="!user " @click="logIn">Sign In</span>
+                <span class="dib ph4-ns ph2 pv3 pv3-ns dim" v-if="user" @click="logOut">Sign Out</span>
             </nav>
         </header>
         <div class="container">
@@ -41,7 +41,7 @@
     </div>
     <template id="questionView">
         <div v-touch:swipeleft="nextQuestion" v-touch:swiperight="buzz" v-touch:press="toggleBuffer">
-            <div class="mt3 mb3">
+            <div class="mv3">
                 <input v-if="canBuzz" class="u-full-width" placeholder="Type" type="text" v-model="input" @keyup.enter="submit" v-focus-model="focused">
             </div>
             <div>
@@ -53,24 +53,24 @@
             <div class="row">
                 <alert v-for="item in $root.alerts" class="animated" transition="bounce" :data="item"></alert>
             </div>
-            <div class="row mt1">
-                <div class="eight columns br2 bg-white ph4-ns ph3 pv4-ns pv2">
+            <div class="row mt3">
+                <div class="eight columns br2 bg-white ph4-ns ph3 pv3">
                     <div v-show="timerBuffer > -1" id="timer" class="u-full-width">
-                        <h3 class="tc mb4">{{timerBuffer/10}} </h3>
+                        <p class="tc f2 mb4 fw3">{{timerBuffer/10}} </p>
                     </div>
-                    <h5>{{currentQuestion.heading}}</h5>
-                    <p>{{textBuffer}}</p>
+                    <p class="f4 mt1">{{currentQuestion.heading}}</p>
+                    <p class="f5 lh-copy">{{textBuffer}}</p>
                 </div>
                 <div class="four columns tc fw3 pa3 pb4 ph4 br2 bg-white">
-                    <h5>Score</h5>
-                    <h3>{{score}}</h3>
+                    <p class="f3">Score</p>
+                    <p class="f2">{{score}}</p>
                     <hr>
-                    <h5>Level</h5>
+                    <p class="f3">Level</p >
                     <select v-model="selected.level">
                         <option value="HS">High School</option>
                     </select>
                     <hr>
-                    <h5>Topics</h5>
+                    <p class="f3">Topics</p >
                     <select v-model="selected.subject">
                         <option value="All">All</option>
                         <option value="Literature">Literature</option>
@@ -94,11 +94,11 @@
             <div class="bg-white pa3 pb3 br2">
                 <div class="row mb3">
                     <div class="four columns">
-                        <h5>Number of Questions</h5>
+                        <p class="f4">Number of Questions</p>
                         <input type="number" class="u-full-width mb2" v-model="number" v-model="input" @keyup.enter="submit" min="1" max="500">
                     </div>
                     <div class="four columns">
-                        <h5>Topics</h5>
+                        <p class="f4">Topics</p>
                         <select class="u-full-width" v-model="topic">
                             <option value="All">All</option>
                             <option value="Literature">Literature</option>
@@ -121,17 +121,17 @@
                 <hr>
                 <div class="row mb5">
                     <div class="six tc columns">
-                        <h5>Percent Correct</h5>
+                        <p class="f4">Correct</p>
                         <chartist class="ct-chart" ratio="ct-major-second" type="Pie" :data="charts.correct"></chartist>
                     </div>
                     <div class="six tc columns">
-                        <h5>Percent of Subject</h5>
+                        <p class="f4">Subjects Answered</p>
                         <chartist class="ct-chart" ratio="ct-major-second" type="Pie" :data="charts.subjects"></chartist>
                     </div>
                 </div>
                 <div class="row mb5" v-for="arr in charts.eachSubject">
                     <div class="six tc columns" v-for="data in arr">
-                        <h5>{{data.title}}</h5>
+                        <p class="f4">{{data.title}}</p>
                         <chartist class="ct-chart" ratio="ct-major-second" type="Pie" :data="data"></chartist>
                     </div>
                 </div>

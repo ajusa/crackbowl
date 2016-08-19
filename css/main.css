@@ -9,12 +9,10 @@ body {
 body {
     font-family: 'Roboto';
 }
-
 .swal2-spacer {
     margin-top: .4rem;
     margin-bottom: .4rem;
 }
-
 @keyframes fadeIn {
     from {
         opacity: 0;
