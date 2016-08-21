@@ -3,15 +3,7 @@ firebase.auth().onAuthStateChanged(function(result) {
     user = result;
     vm.$data.user = user;
     if (user) {
-        swal({
-                title: 'Welcome!',
-                type: 'success',
-                html: "Welcome back " + user.displayName,
-                showConfirmButton: true,
-                confirmButtonText: 'Okay',
-                buttonsStyling: false,
-                confirmButtonClass: 'button'
-            })
+        vm.$events.emit('alert', { text: "Welcome back " + user.displayName, style: { 'bg-dark-green': true } });
         db.ref("users/" + user.uid + "/name").set(user.displayName)
     }
 });
@@ -28,7 +20,6 @@ var vm = new Vue({
     },
     ready: function() {
         var self = this;
-
         this.$events.on('alert', function(msg) {
             self.alerts.unshift(msg)
         });

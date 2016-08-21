@@ -1,7 +1,7 @@
 Vue.component('alert', {
     props: ['data'],
 
-    template: '<div class="w-100 white pv3 ph4 mb3 dt" v-bind:class="data.style"><div class="dtc v-mid">{{data.text}}</div> <a @click="remove" class="dtc link white f2 v-mid fr">×</a></div>',
+    template: '<div class="w-100 white pv2 ph3 mv2 dt" v-bind:class="data.style"><div class="dtc v-mid">{{data.text}}</div> <span @click="remove" class="dtc f3 v-mid fr">×</span></div>',
     ready: function() {
         this.startTimer();
     },

@@ -11,7 +11,6 @@
     <script src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
     <script src="lib/vue-focus.min.js"></script>
     <link rel="stylesheet" href="css/main.css">
-    <script src="https://use.fontawesome.com/28b27610da.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
     <script src="lib/hammer.min.js"></script>
     <script src="lib/vue-touch.min.js"></script>
@@ -26,13 +25,13 @@
 
 <body>
     <div id="wrapper">
-        <header class="bg-black white-90 tracked-l dt w-100 f5">
+        <header class="bg-black white-90 dt w-100 f5">
             <nav class="container bb b--black-10">
-                <span class="dib ph4-ns ph2 pv3 pv3-ns dim" @click="currentView = 'questionview'">Home</span>
-                <span class="dib ph4-ns ph2 pv3 pv3-ns dim" @click="info">About</span>
-                <span class="dib ph4-ns ph2 pv3 pv3-ns dim" v-if="user" @click="currentView='statview'">Stats</span>
-                <span class="dib ph4-ns ph2 pv3 pv3-ns dim" v-if="!user " @click="logIn">Sign In</span>
-                <span class="dib ph4-ns ph2 pv3 pv3-ns dim" v-if="user" @click="logOut">Sign Out</span>
+                <span class="dib pv3 pr4 dim" @click="currentView = 'questionview'">Home</span>
+                <span class="dib pv3 pr4 dim" @click="info">About</span>
+                <span class="dib pv3 pr4 dim" v-if="user" @click="currentView='statview'">Stats</span>
+                <span class="dib pv3 dim" v-if="!user " @click="logIn">Sign In</span>
+                <span class="dib pv3 dim" v-if="user" @click="logOut">Sign Out</span>
             </nav>
         </header>
         <div class="container">
@@ -47,23 +46,23 @@
             <div>
                 <a class="button" @click="buzz">Buzz</a>
                 <a class="button" @click="nextQuestion">Next</a>
-                <a class="button" v-if="!pause" @click="pauseBuffer"><i class="fa fa-pause"></i></a>
-                <a class="button" v-if="pause" @click="playBuffer"><i class="fa fa-play"></i></a>
+                <a class="button" v-if="!pause" @click="pauseBuffer">Pause</a>
+                <a class="button" v-if="pause" @click="playBuffer">Play</a>
             </div>
-            <div class="row">
+            <div class="row mv2">
                 <alert v-for="item in $root.alerts" class="animated" transition="bounce" :data="item"></alert>
             </div>
-            <div class="row mt3">
-                <div class="eight columns br2 bg-white ph4-ns ph3 pv3">
+            <div class="row">
+                <div class="eight columns br2 bg-white ph4-ns ph3 pv2">
                     <div v-show="timerBuffer > -1" id="timer" class="u-full-width">
-                        <p class="tc f2 mb4 fw3">{{timerBuffer/10}} </p>
+                        <p class="tc f2 mb2 fw3">{{timerBuffer/10}} </p>
                     </div>
-                    <p class="f4 mt1">{{currentQuestion.heading}}</p>
+                    <p class="f4 mv2">{{currentQuestion.heading}}</p>
                     <p class="f5 lh-copy">{{textBuffer}}</p>
                 </div>
-                <div class="four columns tc fw3 pa3 pb4 ph4 br2 bg-white">
+                <div class="four columns tc pa3 pb4 ph4 br2 bg-white">
                     <p class="f3">Score</p>
-                    <p class="f2">{{score}}</p>
+                    <p class="f2 ">{{score}}</p>
                     <hr>
                     <p class="f3">Level</p >
                     <select v-model="selected.level">
