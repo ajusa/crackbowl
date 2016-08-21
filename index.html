@@ -47,13 +47,13 @@
             <div>
                 <a class="button" @click="buzz">Buzz</a>
                 <a class="button" @click="nextQuestion">Next</a>
-                <a class="button" v-if="!pause" @click="pauseBuffer"><i class="fa fa-pause"></i></a>
-                <a class="button" v-if="pause" @click="playBuffer"><i class="fa fa-play"></i></a>
+                <a class="button" v-if="!pause" @click="pauseBuffer">Pause</a>
+                <a class="button" v-if="pause" @click="playBuffer">Play</a>
             </div>
-            <div class="row">
+            <div class="row mv2">
                 <alert v-for="item in $root.alerts" class="animated" transition="bounce" :data="item"></alert>
             </div>
-            <div class="row mt3">
+            <div class="row">
                 <div class="eight columns br2 bg-white ph4-ns ph3 pv2">
                     <div v-show="timerBuffer > -1" id="timer" class="u-full-width">
                         <p class="tc f2 mb2 fw3">{{timerBuffer/10}} </p>
@@ -61,9 +61,9 @@
                     <p class="f4 mv2">{{currentQuestion.heading}}</p>
                     <p class="f5 lh-copy">{{textBuffer}}</p>
                 </div>
-                <div class="four columns tc fw3 pa3 pb4 ph4 br2 bg-white">
+                <div class="four columns tc pa3 pb4 ph4 br2 bg-white">
                     <p class="f3">Score</p>
-                    <p class="f2">{{score}}</p>
+                    <p class="f2 fw3">{{score}}</p>
                     <hr>
                     <p class="f3">Level</p >
                     <select v-model="selected.level">
