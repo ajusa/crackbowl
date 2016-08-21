@@ -22,9 +22,9 @@ Vue.component('questionview', {
     },
     data: function() {
         return {
-            currentQuestion: { exists: true, heading:"" },
+            currentQuestion: { exists: true, heading:"Welcome to crackbowl!" },
             input: "",
-            textBuffer: "Welcome to crackbowl! Hit the next button (or n) to start a question, hit buzz (or space) to buzz, and hit pause / play(p) to toggle the question being read. Questions are read here ",
+            textBuffer: "Hit the next button (or n) to start a question, hit buzz (or space) to buzz, and hit pause / play(p) to toggle the question being read. Questions are read here ",
             pause: false,
             n: 0,
             focused: false,
