@@ -31,7 +31,7 @@
 
 .container {
     position: relative;
-    width: 95%;
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 5px;
@@ -50,7 +50,7 @@
 
 @media (min-width: 400px) {
     .container {
-        width: 90%;
+        width: 95%;
         padding: 0;
     }
 }
