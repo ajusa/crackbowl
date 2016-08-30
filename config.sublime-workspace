@@ -1,0 +1,880 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"question",
+				"questions"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"value",
+				"values"
+			],
+			[
+				"in",
+				"Incorrect"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
+				"v",
+				"v-on	@evt=\"callback\""
+			],
+			[
+				"remove",
+				"removeAlert"
+			],
+			[
+				"console",
+				"consolebuffer"
+			],
+			[
+				"v-",
+				"v-if	<div v-if=\"\">"
+			],
+			[
+				"timer",
+				"timerBuffer"
+			],
+			[
+				"fin",
+				"finalObj"
+			],
+			[
+				"ques",
+				"questions"
+			],
+			[
+				"index",
+				"indexOf"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
+				"start",
+				"startTimer"
+			],
+			[
+				"next",
+				"nextQuestion"
+			],
+			[
+				"tog",
+				"toggleBuffer"
+			],
+			[
+				"fuc",
+				"focused"
+			],
+			[
+				"n",
+				"nextQuestion"
+			],
+			[
+				"ans",
+				"answers"
+			],
+			[
+				"c",
+				"currentQuestion"
+			],
+			[
+				"pro",
+				"project-574507936047288324"
+			],
+			[
+				"pr",
+				"processed"
+			],
+			[
+				"aw",
+				"awaiting"
+			],
+			[
+				"the",
+				"theOne"
+			],
+			[
+				"on",
+				"oninput	Attr"
+			],
+			[
+				"gam",
+				"gamepads"
+			],
+			[
+				"dis",
+				"distanceSoFar"
+			],
+			[
+				"playe",
+				"playerPosition"
+			],
+			[
+				"mouse",
+				"mousePosition"
+			],
+			[
+				"s",
+				"stage"
+			],
+			[
+				"sp",
+				"spellID"
+			],
+			[
+				"sepll",
+				"spellID"
+			],
+			[
+				"spal",
+				"splash"
+			],
+			[
+				"splash",
+				"splashscreen"
+			],
+			[
+				"pla",
+				"playerImg"
+			],
+			[
+				"autonDef",
+				"autondefensetypelowbar"
+			],
+			[
+				"rva",
+				"rvaluey"
+			],
+			[
+				"lvalue",
+				"lvaluey"
+			],
+			[
+				"lalue",
+				"lvaluey"
+			],
+			[
+				"blue",
+				"bluebotsclimb"
+			],
+			[
+				"rea",
+				"reasonText"
+			],
+			[
+				"cons",
+				"console"
+			],
+			[
+				"l",
+				"log"
+			],
+			[
+				"dta",
+				"data"
+			],
+			[
+				"data",
+				"database"
+			],
+			[
+				"ser",
+				"searchTerm"
+			],
+			[
+				"Tab",
+				"tableStore"
+			],
+			[
+				"Riot",
+				"RiotControl"
+			],
+			[
+				"co",
+				"counselor"
+			],
+			[
+				"drop",
+				"dropid"
+			],
+			[
+				"new",
+				"newPlayer"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"re",
+				"render"
+			],
+			[
+				"x",
+				"xval"
+			],
+			[
+				"ga",
+				"gameStart"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"Height",
+				"HEIGHT"
+			],
+			[
+				"spla",
+				"splashscreen"
+			],
+			[
+				"add",
+				"addChild"
+			],
+			[
+				"render",
+				"renderer"
+			],
+			[
+				"ma",
+				"matches"
+			],
+			[
+				"matches",
+				"matchesWithAuton"
+			],
+			[
+				"auton",
+				"autonPoints"
+			],
+			[
+				"auto",
+				"autonPoints"
+			],
+			[
+				"g",
+				"getTeamScore"
+			],
+			[
+				"im",
+				"import	import (...) ʂ"
+			],
+			[
+				"i",
+				"inc	#include \"…\""
+			],
+			[
+				"t",
+				"type"
+			],
+			[
+				"soc",
+				"socket"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 7901,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 884.0,
+		"last_filter": "insta",
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"align",
+				"Preferences: Alignment Key Bindings – User"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"HTMLPrettify"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"git push",
+				"Git: Push Current Branch"
+			],
+			[
+				"git ",
+				"Git: Quick Commit"
+			],
+			[
+				"git add",
+				"Git: Add..."
+			],
+			[
+				"git qui",
+				"Git: Quick Commit"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"go build",
+				"GoSublime: Run build command"
+			],
+			[
+				"go run",
+				"GoSublime: Run Tests"
+			],
+			[
+				"go tes",
+				"GoSublime: Run Tests"
+			],
+			[
+				"go",
+				"GoSublime: Run Tests"
+			]
+		],
+		"width": 994.0
+	},
+	"console":
+	{
+		"height": 246.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Arham/Documents/Projects/crackbowl"
+	],
+	"file_history":
+	[
+		"/C/Users/Arham/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/Users/Arham/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built8-19-16(Arham)/cmeias-cmeias-it-390052a7dae2/cmeias/source/occlassm.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built8-19-16(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Src/PrecisionSettings.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built8-19-16(Arham)/cmeias-cmeias-it-390052a7dae2/cmeias/source/ObjClass.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built8-19-16(Arham)/cmeias-cmeias-it-390052a7dae2/cmeias/source/ObjAnal.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built8-19-16(Arham)/cmeias-cmeias-it-390052a7dae2/cmeias/source/objAnlcu.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built8-19-16(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Src/ImageSettings.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built8-19-16(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Src/FindObjectsSettings.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built8-19-16(Arham)/cmeias-cmeias-it-390052a7dae2/cmeias/source/ObjAnalOptions.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built8-19-16(Arham)/cmeias-cmeias-it-390052a7dae2/cmeias/source/MeasureFeature.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built8-19-16(Arham)/cmeias-cmeias-it-390052a7dae2/cmeias/source/OCClass.cpp",
+		"/C/Users/Arham/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/Arham/Documents/Projects/crackbowl/views/question/root.js",
+		"/C/Users/Arham/Documents/Projects/crackbowl/css/main.css",
+		"/C/Users/Arham/Documents/Projects/crackbowl/css/skeleton.css",
+		"/C/Users/Arham/Documents/Projects/crackbowl/views/alert.js",
+		"/C/Users/Arham/Documents/Projects/crackbowl/views/main.js",
+		"/C/Users/Arham/Documents/Projects/crackbowl/views/stats/root.js",
+		"/C/Users/Arham/Documents/Projects/crackbowl/lib/util.js",
+		"/C/Users/Arham/Documents/Projects/crackbowl/lib/chartist-vue.js",
+		"/C/Users/Arham/Documents/Projects/crackbowl/css/chartist.css",
+		"/C/Users/Arham/Documents/Projects/crackbowl/index.html",
+		"/C/Users/Arham/Documents/Projects/crackbowl/js/main.js",
+		"/C/Users/Arham/Documents/Projects/crackbowl/lib/responsive-nav.min.js",
+		"/C/Users/Arham/Documents/Projects/crackbowl/css/responsive-nav.css",
+		"/C/Users/Arham/Documents/Projects/crackbowl/lib/sweetalert2.min.js",
+		"/C/Users/Arham/Documents/Projects/crackbowl/client/css/main.css",
+		"/C/Users/Arham/Documents/Projects/crackbowl/client/js/main.js",
+		"/C/Users/Arham/Documents/Projects/crackbowl/client/tags/alert.js",
+		"/C/Users/Arham/Documents/Projects/crackbowl/client/index.html",
+		"/C/Users/Arham/Documents/Projects/crackbowl/client/lib/events.js",
+		"/C/Users/Arham/Documents/Projects/crackbowl/client/lib/vue.js",
+		"/C/Users/Arham/Desktop/CmeiasIt4.0built11-16-2015wOldPaletteswRooshabhPatches(Arham)/7-13/cmeias-cmeias-it-390052a7dae2/cmeias/source/objAnlcu.cpp",
+		"/C/Users/Arham/Documents/Projects/crackbowl/client/tags/alerts.js",
+		"/C/Users/Arham/Documents/Projects/crackbowl/client/lib/loading-bars.svg",
+		"/C/Users/Arham/Documents/Projects/crackbowl/client/lib/vue-touch.min.js",
+		"/C/Users/Arham/Documents/Projects/crackbowl/client/lib/nprogress.js",
+		"/C/Users/Arham/Documents/Projects/crackbowl/client/css/nprogress.css",
+		"/C/Users/Arham/Documents/Projects/crackbowl/client/css/skeleton.css",
+		"/C/Users/Arham/Documents/Projects/crackbowl/client/js/util.js",
+		"/C/Users/Arham/Documents/Projects/Robotics/match2016/match.r",
+		"/C/Users/Arham/Downloads/config.json",
+		"/C/Users/Arham/Documents/Projects/crackbowl/src/questionView/main.vue",
+		"/C/Users/Arham/Documents/Projects/crackbowl/src/App.vue",
+		"/C/Users/Arham/Documents/Projects/crackbowl/client/js/alert.js",
+		"/C/Users/Arham/Documents/Projects/crackbowl-scraper/main.js",
+		"/C/Users/Arham/Documents/Projects/crackbowl-scraper/generateDetails.js",
+		"/C/Users/Arham/Documents/Projects/crackbowl/README.md",
+		"/C/Users/Arham/Documents/Projects/DropsAndAdds/public/studentServer/tag/view.html",
+		"/C/Users/Arham/Documents/Projects/DropsAndAdds/public/studentServer/tag/list.html",
+		"/C/Users/Arham/Documents/Languages/main.cpp",
+		"/C/Users/Arham/Documents/Projects/DropsAndAdds/public/studentForm/store/formStore.js",
+		"/C/Users/Arham/Documents/Projects/DropsAndAdds/public/studentForm/tag/forms.html",
+		"/C/Users/Arham/Documents/Projects/DropsAndAdds/public/studentServer/store/viewStore.js",
+		"/C/Users/Arham/Documents/Projects/DropsAndAdds/public/studentServer/index.html",
+		"/C/Users/Arham/Documents/Projects/DropsAndAdds/public/studentForm/index.html",
+		"/C/Users/Arham/Desktop/CmeiasIt4.0built11-16-2015wOldPaletteswRooshabhPatches(Arham)/7-13/cmeias-cmeias-it-390052a7dae2/cmeias/source/objAnlcunew.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built7-13-16(Arham)/cmeias-cmeias-it-390052a7dae2/cmeias/source/objAnlcu11-15.cpp",
+		"/C/Users/Arham/Documents/Projects/DropsAndAdds/public/studentForm/success.html",
+		"/C/Users/Arham/Documents/Projects/DropsAndAdds/public/index.html",
+		"/C/Users/Arham/Documents/Projects/scrapeclass/main.js",
+		"/C/Users/Arham/Documents/Projects/hypixelbot/main.js",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built7-13-16(Arham)/cmeias-cmeias-it-390052a7dae2/cmeias/source/ObjClass.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built7-13-16(Arham)/cmeias-cmeias-it-390052a7dae2/cmeias/source/ObjAnal.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built7-13-16(Arham)/cmeias-cmeias-it-390052a7dae2/cmeias/objlabel/objlabel.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built7-13-16(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Src/ImageToolApp.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built7-13-16(Arham)/cmeias-cmeias-it-390052a7dae2/cmeias/source/objAnlcu.cpp",
+		"/C/Users/Arham/Documents/Projects/DropsAndAdds/public/admin.html",
+		"/C/Users/Arham/Documents/Projects/DropsAndAdds/studentServer/tag/list.html",
+		"/C/Users/Arham/Documents/Projects/DropsAndAdds/studentServer/tag/app.html",
+		"/C/Users/Arham/Documents/Projects/DropsAndAdds/studentServer/index.html",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built6-15-16(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/DLLs/About.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built6-15-16(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Src/ImportDialog.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built6-15-16(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Src/ResultsWindow.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built6-15-16(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Script/ScriptParser.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built6-15-16(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Script/Interpreter.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built6-15-16(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Script/Tokens.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built6-15-16(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Script/ScriptParser.h",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built6-15-16(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Script/CommandHandler.h",
+		"/C/Users/Arham/Documents/Projects/gtamc-bot/main.js",
+		"/C/Users/Arham/Desktop/CmeiasIt4.0built11-16-2015wOldPaletteswRooshabhPatches(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Src/toolhlpr.cpp",
+		"/C/Users/Arham/Desktop/CmeiasIt4.0built11-16-2015wOldPaletteswRooshabhPatches(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Src/Utility.cpp",
+		"/C/Users/Arham/Desktop/CmeiasIt4.0built11-16-2015wOldPaletteswRooshabhPatches(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Src/xpctlbar.cpp",
+		"/C/Users/Arham/Desktop/CmeiasIt4.0built11-16-2015wOldPaletteswRooshabhPatches(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Script/Interpreter.cpp",
+		"/C/Users/Arham/Desktop/CmeiasIt4.0built11-16-2015wOldPaletteswRooshabhPatches(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Src/ITCommandHandler.cpp",
+		"/C/Users/Arham/Desktop/CmeiasIt4.0built11-16-2015wOldPaletteswRooshabhPatches(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Src/AboutIT.cpp",
+		"/C/Users/Arham/Desktop/CmeiasIt4.0built11-16-2015wOldPaletteswRooshabhPatches(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Src/About.cpp",
+		"/C/Users/Arham/Desktop/CmeiasIt4.0built11-16-2015wOldPaletteswRooshabhPatches(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Src/ImageToolApp.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built6-15-16(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Src/ScriptManager.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built6-15-16(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Src/SingleImageWindow.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built6-15-16(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Src/ImageToolApp.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built6-15-16(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Src/About.cpp",
+		"/C/Users/Arham/Desktop/CmeiasIt4.0built11-16-2015wOldPaletteswRooshabhPatches(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Script/ScriptParser.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built6-15-16(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Inc/About.h",
+		"/E/Cmeias/SCUTHSCSAImageToolFromBrentDove 9-17-09/ImageTool/Src/ITAbout.cpp",
+		"/C/Users/Arham/Desktop/CmeiasIt4.0built11-16-2015wOldPaletteswRooshabhPatches(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Src/PointHistogramSettings.cpp",
+		"/C/Users/Arham/Desktop/CmeiasIt4.0built11-16-2015wOldPaletteswRooshabhPatches(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Src/ScriptManager.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built6-10-16(Arham)/cmeias-cmeias-it-390052a7dae2/ArhamChanges.txt",
+		"/C/Users/Arham/Downloads/eopkg-index.xml/eopkg-index.xml",
+		"/C/Users/Arham/Documents/Projects/Eavu/resolver.d",
+		"/C/Users/Arham/Documents/Projects/Eavu/scrape.d",
+		"/C/Users/Arham/Documents/Projects/Eavu/main.d",
+		"/C/Users/Arham/AppData/Roaming/Sublime Text 3/Packages/GoSublime/CHANGELOG.md",
+		"/C/Users/Arham/Documents/Projects/Eavu/movie.d",
+		"/C/Users/Arham/AppData/Roaming/Sublime Text 3/Packages/User/DKit.sublime-settings",
+		"/C/Users/Arham/AppData/Roaming/Sublime Text 3/Packages/DKit/DKit.sublime-settings",
+		"/C/Users/Arham/Documents/Projects/Eavu/util.d",
+		"/C/Users/Arham/Documents/Projects/Eavu/multimedia/movie.d",
+		"/C/Users/Arham/Documents/Projects/Eavu/modules.d",
+		"/C/Users/Arham/Documents/Projects/Eavu/urlresolver/thefile.d",
+		"/C/Users/Arham/Documents/Projects/Eavu/urlresolver/resolver.d",
+		"/C/Users/Arham/Documents/Projects/Eavu/urlresolver/urlresolver.d",
+		"/C/Users/Arham/Documents/Projects/Eavu/arsd/http.d",
+		"/C/Users/Arham/Documents/Projects/Eavu/arsd/dom.d",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built11-16-2015wOldPaletteswRooshabhPatches(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Src/xpctlbar.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built11-16-2015wOldPaletteswRooshabhPatches(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Src/ResultsWindow.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built11-16-2015wOldPaletteswRooshabhPatches(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Src/MDIClient.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built11-16-2015wOldPaletteswRooshabhPatches(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Src/ITCommandHandler.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built11-16-2015wOldPaletteswRooshabhPatches(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/DLLs/Src/ImageWindow.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built11-16-2015wOldPaletteswRooshabhPatches(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Src/ImageToolApp.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built11-16-2015wOldPaletteswRooshabhPatches(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Src/ImageSettings.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built11-16-2015wOldPaletteswRooshabhPatches(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/Include/UTILib/OpenSave.h",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built11-16-2015wOldPaletteswRooshabhPatches(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/Include/Spread/Ssdllowl.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built11-16-2015wOldPaletteswRooshabhPatches(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/Include/UTILib/ImageClientWindow.h",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built11-16-2015wOldPaletteswRooshabhPatches(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/Include/Spread/Ssdll.h",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built11-16-2015wOldPaletteswRooshabhPatches(Arham)/cmeias-cmeias-it-390052a7dae2/itsdk/ImageTool/Src/WindowLevel.cpp",
+		"/E/Cmeias/CmeiasIt v4.0 SC/CmeiasIt4.0built11-16-2015wOldPaletteswRooshabhPatches(Arham)/cmeias-cmeias-it-390052a7dae2/cmeias/source/ObjAnalOptions.cpp"
+	],
+	"find":
+	{
+		"height": 49.0
+	},
+	"find_in_files":
+	{
+		"height": 194.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"IDC_Classification_Feature",
+			"IDC_TreeClassify",
+			"centroid",
+			"IDC_PrecisionSettings_Angle",
+			"IDC_EDIT_k_of_AlloMetRate",
+			"inverse",
+			"IDC_ObjectAnalysis_Inv1stNNDist",
+			"IDC_EDIT_EntireVolume",
+			"specificationText",
+			"IDC_EDIT_DensityFactor",
+			"areacon",
+			"font",
+			"SetObjectNumberingFont",
+			"numberingFont",
+			"ImageSettings",
+			"numberingFont",
+			"TColor",
+			"numberingFont",
+			"Instance",
+			"FindObjectsSettings",
+			"GetObjectOutlineColor",
+			"color",
+			"lib",
+			"wrapper",
+			"questionView",
+			"title",
+			"emit",
+			"fw3",
+			"hr",
+			"sign",
+			"h4",
+			"select",
+			"base",
+			"button",
+			"options",
+			"use",
+			"require",
+			"welcome",
+			"topic",
+			"v-on",
+			"menu",
+			"hr",
+			"swal2-spacer",
+			"br",
+			"events",
+			"events();",
+			"initEvents();",
+			"_initEvents();",
+			"events",
+			"$emit",
+			"emit",
+			"IDD_DIALOG_ValueOfAOI",
+			"consoleBuffer",
+			"hammer",
+			"npr",
+			"timerBuffer",
+			"lat",
+			"pause",
+			"alerts",
+			"focused",
+			"questions",
+			"50",
+			"this.nextQuestion()",
+			"{\n",
+			"button",
+			"/*",
+			"blur",
+			"canbuzz",
+			"this.nextQ",
+			"this.next",
+			"app",
+			"contains",
+			"self.data.drops",
+			"reason",
+			"br",
+			"e.item",
+			"body",
+			"pDazzoImageColors_gc",
+			"dazzo",
+			"search",
+			"open",
+			"//",
+			"open",
+			"//",
+			"open",
+			"cmeias",
+			"help",
+			"about",
+			"help",
+			"cmd",
+			"ITCom",
+			"open",
+			"ITCommandHandler::Instance().Open(a.GetWriteLnStyleExpression(0, true));",
+			"Open",
+			"open",
+			"open ",
+			"About",
+			"IDDAboutIT",
+			"AboutIT",
+			"About",
+			"aboutIT",
+			"about",
+			"theOne",
+			"TOpenSaveDialog",
+			"DoSaveImage",
+			"export",
+			"save",
+			"TOpenSaveDialog",
+			"OFN_",
+			"OFN_ENABLESIZING",
+			"cmfilesave",
+			"TOpenSaveDialog",
+			"save",
+			"export",
+			"save",
+			"OFN_Ena",
+			"cmfilesa",
+			"FileSave",
+			"CmFileSave",
+			"TOpenSaveDialog::TData",
+			"OFN_Ena",
+			"OFN",
+			"save",
+			"OFN_ENABLESIZING",
+			"table",
+			"setscroll",
+			"pow",
+			"biomass"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"self.data",
+			"",
+			"15",
+			"20",
+			"j2xls",
+			"json2xls",
+			"data",
+			"10",
+			"blue",
+			"value",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7901,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1216,
+								1216
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 49.0
+	},
+	"input":
+	{
+		"height": 155.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.9o://C:\\Users\\Arham\\Documents\\Projects\\DropsAndAdds\\public":
+	{
+		"height": 55.0
+	},
+	"output.9o://C:\\Users\\Arham\\Documents\\Projects\\DropsAndAdds\\studentForm\\tag":
+	{
+		"height": 60.0
+	},
+	"output.9o://C:\\Users\\Arham\\Documents\\Projects\\DropsAndAdds\\studentServer":
+	{
+		"height": 357.0
+	},
+	"output.9o://C:\\Users\\Arham\\Documents\\Projects\\DropsAndAdds\\studentServer\\store":
+	{
+		"height": 284.0
+	},
+	"output.9o://C:\\Users\\Arham\\Documents\\Projects\\Scouting\\www\\tag":
+	{
+		"height": 357.0
+	},
+	"output.9o://C:\\Users\\Arham\\Documents\\Projects\\Spell":
+	{
+		"height": 375.0
+	},
+	"output.9o://C:\\Users\\Arham\\Documents\\Projects\\Spell-Server":
+	{
+		"height": 210.0
+	},
+	"output.9o://C:\\Users\\Arham\\Documents\\Projects\\crackbowl\\client\\js":
+	{
+		"height": 55.0
+	},
+	"output.GoSublime-main-output":
+	{
+		"height": 332.0
+	},
+	"output.GoSublime-output":
+	{
+		"height": 210.0
+	},
+	"output.MarGo-output":
+	{
+		"height": 210.0
+	},
+	"output.exec":
+	{
+		"height": 315.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 116.0
+	},
+	"pinned_build_system": "Packages/GoSublime/GoSublime.sublime-build",
+	"project": "config.sublime-project",
+	"replace":
+	{
+		"height": 94.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"player.go"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 417.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
