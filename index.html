@@ -26,7 +26,7 @@
 <body>
     <div id="wrapper">
         <header class="bg-black white-90 dt w-100 f5">
-            <nav class="container bb b--black-10">
+            <nav class="container b bb b--black-10">
                 <span class="dib pv3 pl3 pl0-ns pr4 dim" @click="currentView = 'questionview'">Home</span>
                 <span class="dib pv3 pr4 dim" @click="info">About</span>
                 <span class="dib pv3 pr4 dim" v-if="user" @click="currentView='statview'">Stats</span>
@@ -57,32 +57,24 @@
                     <div v-show="timerBuffer > -1" id="timer" class="u-full-width">
                         <p class="tc f2 mb2 fw3">{{timerBuffer/10}} </p>
                     </div>
-                    <p class="f4 mv2">{{currentQuestion.heading}}</p>
-                    <p class="f5 lh-title">{{textBuffer}}</p>
+                    <h1 class="f4 mv2">{{currentQuestion.heading}}</h1>
+                    <p class="f5 lh-copy">{{textBuffer}}</p>
                 </div>
                 <div class="four columns tc pa3 pb4 ph4 br2 bg-white">
-                    <p class="f3">Score</p>
+                    <h2 class="f3">Score</h2>
                     <p class="f2 ">{{score}}</p>
                     <hr>
-                    <p class="f3">Level</p>
+                    <h2 class="f3">Level</h2>
                     <select v-model="selected.level">
                         <option value="HS">High School</option>
                     </select>
                     <hr>
-                    <p class="f3">Topics</p>
+                    <h2 class="f3">Topics</h2>
                     <select v-model="selected.subject">
                         <option value="All">All</option>
-                        <option value="Literature">Literature</option>
-                        <option value="History">History</option>
-                        <option value="Science">Science</option>
-                        <option value="Fine Arts">Fine Arts</option>
-                        <option value="Religion">Religion</option>
-                        <option value="Mythology">Mythology</option>
-                        <option value="Philosophy">Philosophy</option>
-                        <option value="Social Science">Social Science</option>
-                        <option value="Geography">Geography</option>
-                        <option value="Current Events">Current Events</option>
-                        <option value="Trash">Trash</option>
+                        <option v-for="option in $root.subjects" v-bind:value="option">
+                            {{ option }}
+                        </option>
                     </select>
                 </div>
             </div>
@@ -91,32 +83,42 @@
     <template id="statView">
         <div class="mt4">
             <div class="bg-white pa3 pb3 br2">
+                <h1 class="f4">Mode</h1>
+                <label for="one">
+                    <input type="radio" id="one" value="graphs" v-model="mode">
+                    <span class="label-body">Graphs</span>
+                </label>
+                <label for="two">
+                    <input type="radio" id="two" value="questions" v-model="mode">
+                    <span class="label-body">Questions</span>
+                </label>
+                <br>
                 <div class="row mb3">
                     <div class="four columns">
-                        <p class="f4">Number of Questions</p>
+                        <h1 class="f4">Number of Questions</h1>
                         <input type="number" class="u-full-width mb2" v-model="number" v-model="input" @keyup.enter="submit" min="1" max="500">
                     </div>
                     <div class="four columns">
-                        <p class="f4">Topics</p>
+                        <h1 class="f4">Topics</h1>
                         <select class="u-full-width" v-model="topic">
                             <option value="All">All</option>
-                            <option value="Literature">Literature</option>
-                            <option value="History">History</option>
-                            <option value="Science">Science</option>
-                            <option value="Fine Arts">Fine Arts</option>
-                            <option value="Religion">Religion</option>
-                            <option value="Mythology">Mythology</option>
-                            <option value="Philosophy">Philosophy</option>
-                            <option value="Social Science">Social Science</option>
-                            <option value="Geography">Geography</option>
-                            <option value="Current Events">Current Events</option>
-                            <option value="Trash">Trash</option>
+                            <option v-for="option in $root.subjects" v-bind:value="option">
+                                {{ option }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="four columns" v-show="mode=='questions'">
+                        <h1 class="f4">Filter</h1>
+                        <select class="u-full-width" v-model="correct">
+                            <option value="All">All</option>
+                            <option value="true">Correct</option>
+                            <option value="false">Incorrect</option>
                         </select>
                     </div>
                 </div>
                 <a class="button" @click="submit">Submit</a>
             </div>
-            <div v-show="show">
+            <div v-if="mode=='graphs' && show">
                 <hr>
                 <div class="row mb5">
                     <div class="six tc columns">
@@ -135,8 +137,21 @@
                     </div>
                 </div>
             </div>
+            <div v-if="mode=='questions'">
+                <hr>
+                <div v-for="question in questions">
+                    <question :data="question"></question>
+                </div>
+            </div>
             <hr>
-            <p>Select the topics that you would like to run the analysis on. "None" means that the question hasn't been classified yet.</p>
+            <p>Select the topics that you would like to run the analysis on. "None" means that the question hasn't been classified yet. Number of Questions is simply the amount of questions last answered that you would like to run through. Running it on all questions can be slow and inaccurate of a player's current skill level.
+            </p>
+        </div>
+    </template>
+    <template id="question">
+        <div class="pv1 ph3 white mv2" v-bind:class="{ 'bg-green': data.correct, 'bg-red': !data.correct }" @click="popup">
+            <h4 class="truncate mb2 mt3">{{data.heading}}</h4>
+            <p class="truncate">Answer: {{data.answerText}}</p>
         </div>
     </template>
 </body>
@@ -155,6 +170,7 @@ Vue.use(VueTouch)
 </script>
 <script src="lib/util.js"></script>
 <script src="views/alert.js"></script>
+<script src="views/stats/question.js"></script>
 <script src="views/question/root.js"></script>
 <script src="views/stats/root.js"></script>
 <script src="views/main.js"></script>

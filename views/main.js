@@ -3,7 +3,7 @@ firebase.auth().onAuthStateChanged(function(result) {
     user = result;
     vm.$data.user = user;
     if (user) {
-        vm.$events.emit('alert', { text: "Welcome back " + user.displayName, style: { 'bg-dark-green': true } });
+        vm.$events.emit('alert', { text: "Welcome back " + user.displayName, style: { 'bg-green': true } });
         db.ref("users/" + user.uid + "/name").set(user.displayName)
     }
 });
@@ -17,6 +17,7 @@ var vm = new Vue({
         user: firebase.auth().currentUser,
         alerts: [],
         currentView: "questionview",
+        subjects: subjects,
     },
     ready: function() {
         var self = this;

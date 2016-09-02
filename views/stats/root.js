@@ -15,15 +15,15 @@ Vue.component('statview', {
                 subjects: null,
                 eachSubject: null,
             },
+            mode: "graphs",
+            correct: "false",
         }
     },
     methods: {
-        runStats: function(data, sub) {
+        runStats: function(sub) {
             var self = this;
-            qs = this.questions = _(data.val()).values().map(function(o) {
-                o[sub] = o[sub] || "None"
-                return o
-            }).value()
+            qs = this.questions;
+
             ql = qs.length; //total questions
             highLevel = _.countBy(qs, sub)
             c = _.compact(_.map(qs, 'correct')).length //number correct
@@ -39,6 +39,18 @@ Vue.component('statview', {
             self.charts.eachSubject = _.chunk(self.charts.eachSubject, 2); //for grids
             this.show = true;
         },
+        getQuestions: function(data, sub) {
+            this.questions = _(data.val()).values().map(function(o) {
+                o[sub] = o[sub] || "None"
+                return o
+            }).value()
+        },
+        filterQuestions: function() {
+            if (this.correct != "All") {
+                var val = (this.correct === "true");
+                this.questions = _.filter(this.questions, ['correct', val]);
+            }
+        },
         submit: function() {
             var self = this;
             this.questions = [];
@@ -46,21 +58,40 @@ Vue.component('statview', {
                 swal({
                     title: '<h4>Number</h4>',
                     type: 'error',
-                    text: 'Please enter in a different number',
+                    text: 'Please enter in a different number that is less than 500 and greater than 0',
                     showConfirmButton: true,
                     confirmButtonText: 'Cancel',
                     buttonsStyling: false,
                     confirmButtonClass: 'button'
                 })
             }
-            if (this.topic != "All") {
-                db.ref("users/" + user.uid + "/questions").orderByChild("topic").equalTo(self.topic).limitToLast(Number(this.number)).once('value', function(snapshot) {
-                    self.runStats(snapshot, 'subject')
-                })
+            var type = 'topic';
+            if (this.topic != "All")
+                type = 'subject'
+            if (this.mode == "graphs") {
+                if (this.topic == "All") {
+                    db.ref("users/" + user.uid + "/questions").limitToLast(Number(this.number)).once('value', function(snapshot) {
+                        self.getQuestions(snapshot, type)
+                        self.runStats(type)
+                    })
+                } else {
+                    db.ref("users/" + user.uid + "/questions").orderByChild("topic").equalTo(self.topic).limitToLast(Number(this.number)).once('value', function(snapshot) {
+                        self.getQuestions(snapshot, type)
+                        self.runStats(type)
+                    })
+                }
             } else {
-                db.ref("users/" + user.uid + "/questions").limitToLast(Number(this.number)).once('value', function(snapshot) {
-                    self.runStats(snapshot, 'topic')
-                });
+                if (this.topic == "All") {
+                    db.ref("users/" + user.uid + "/questions").limitToLast(Number(this.number)).once('value', function(snapshot) {
+                        self.getQuestions(snapshot, type)
+                        self.filterQuestions();
+                    })
+                } else {
+                    db.ref("users/" + user.uid + "/questions").orderByChild("topic").equalTo(self.topic).limitToLast(Number(this.number)).once('value', function(snapshot) {
+                        self.getQuestions(snapshot, type)
+                        self.filterQuestions();
+                    })
+                }
             }
         },
     },
