@@ -59,7 +59,7 @@ Vue.component('questionview', {
                 } else if (self.n == (self.currentQuestion.question.length || 0)) {
                     self.timerBuffer = 30;
                     bar.set(0)
-                    bar.animate(1);
+                    bar.animate(1,{duration: 3000});
                     self.n++
                 }
             }, 50);
