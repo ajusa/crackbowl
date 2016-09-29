@@ -26,12 +26,14 @@
 <body>
     <div id="wrapper">
         <header class="bg-black white-90 dt w-100 f5">
-            <nav class="container b bb b--black-10 nowrap overflow-x-auto">
-                <span class="dib pv3 pl3 pl0-ns pr4 dim" @click="currentView = 'questionview'">Home</span>
-                <span class="dib pv3 pr4 dim" @click="info">About</span>
-                <span class="dib pv3 pr4 dim" v-if="user" @click="currentView='statview'">Stats</span>
-                <span class="dib pv3 dim" v-if="!user " @click="logIn">Sign In</span>
-                <span class="dib pv3 dim" v-if="user" @click="logOut">Sign Out</span>
+            <nav class="container b bb b--black-10">
+                <div class="nowrap overflow-x-auto">
+                    <span class="dib pv3 pl3 pl0-ns pr4 dim" @click="currentView = 'questionview'">Home</span>
+                    <span class="dib pv3 pr4 dim" @click="info">About</span>
+                    <span class="dib pv3 pr4 dim" v-if="user" @click="currentView='statview'">Stats</span>
+                    <span class="dib pv3 dim" v-if="!user " @click="logIn">Sign In</span>
+                    <span class="dib pv3 dim" v-if="user" @click="logOut">Sign Out</span>
+                </div>
             </nav>
         </header>
         <div class="container">
